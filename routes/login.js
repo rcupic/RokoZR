@@ -2,10 +2,9 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../db/db.js');
 
-/*GET LOGIN PAGE*/
 router.get('/',function(req,res,next){
 	
-	if(req.session.username){//IF USER IS LOGGED IN
+	if(req.session.username){
 
 		res.redirect('secure');
 		
@@ -18,7 +17,6 @@ router.get('/',function(req,res,next){
 
 router.post('/',function(req,res,next){
 	
-	console.log('POSTING LOGIN');
 	const name = req.body.username;
 	const pasw = req.body.password;
 	
