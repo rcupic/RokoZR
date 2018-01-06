@@ -3,9 +3,14 @@ var router = express.Router();
 
 router.get('/',function(err,req,res){
 
-	console.log(req.session.user);
-	req.session.destroy();
-	res.redirect('/');
+	req.session.destroy(function(err){
+		
+		if(err){
+			res.status(500).json(err);
+		}
+		
+	});
+	res.redirect('login');
 
 });
 
