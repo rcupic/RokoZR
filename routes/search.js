@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const connection = require('../db/db.js');
 const socket = require('../routes/sockets.js');
-
+const dbHandler = require('../service/dbHandler.js');
 
 router.get('/', function(req, res, next) {
 	
@@ -11,16 +11,13 @@ router.get('/', function(req, res, next) {
 	socket.on('connection',function(client){
 		
 		client.on('search',function(value){
-			
-			const sql = "SELECT * FROM usersdb.ads WHERE active='1' AND ads.name='"+value+"'";
-			
-			connection.query(sql,function(err,results,fields){
-	
-				const stringRes = JSON.parse(JSON.stringify(results));
+						
+			dbHandler.searchAd(value,function(err,results){
 				
-				socket.emit('finishedSearch',stringRes);
-				console.log('here');
-			});
+				if(err) res.status(500).json(err);
+				
+				socket.emit('finishedSearch',results);
+			});			
 			
 		});
 	});
