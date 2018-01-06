@@ -6,13 +6,9 @@ function Search(){
 	
 	socket.emit('search',txt);
 	
-
-	
 	socket.on('finishedSearch',function(res){
 		
-		console.log('Accepted');
 		document.getElementById('pSearch0').innerHTML = res[0].name+","+res[0].description;
-		
-		
+				
 	});
 }
