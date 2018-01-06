@@ -1,0 +1,25 @@
+extends layout
+
+block content
+	div(class='midpage')
+		h1 New Ad
+		form(method='post')
+			p
+				label(for='adName') <em>Name:</em> 
+				input(type='text', name='adName')
+				br
+			p
+				label(for='adAmount') <em>Amout:</em> 
+				input(type='text', name='adAmount')
+				br
+			p
+				label(for='adCathegory') <em>Cathegory:</em> 
+				select(name='adCathegory')
+					each variable in ['Sport','Fun','Bussiness','Health']
+						option(value=variable) #{variable}
+			p(id='pDescription')
+				label(for='adDescription') <em>Description:</em> 
+				textarea(cols='40' rows='5' id='DescriptionText' placeholder='Write your description...' name='adDescription')
+				br
+			input(type='submit')
+		br

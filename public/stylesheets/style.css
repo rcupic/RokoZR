@@ -1,0 +1,168 @@
+body {
+  padding: 50px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+em{
+	
+	color: red;
+}
+
+div.midpage{
+	
+	text-align: center;
+	padding: 20px;
+	
+}
+
+h1{
+	
+	color: red;
+	
+}
+
+button.indexbtn{
+	
+	background-color: red;
+	border-radius: 30px;
+	font-family: Comic Sans MS;
+	font-size: 18px;
+	
+}
+
+input[type=submit]{
+	
+	background-color: red;
+	border-radius: 30px;
+	font-family: Comic Sans MS;
+	font-size: 18px;	
+}
+
+button.indexbtn:hover{
+	
+	background-color: black;
+	color: white;
+
+}
+
+input[type=submit]:hover{
+	
+	background-color: black;
+	color: white;
+	
+}
+
+
+html{
+	
+	background: linear-gradient(to bottom right, white,yellow, red);
+	font-family: Comic Sans MS;
+	font-size: 18px;
+}
+
+div.midpage{
+	
+	text-align: center;
+
+}
+
+div.title{
+	
+	text-align: center;
+	color: black;
+	font-family: Comic Sans MS;
+	font-weight: bold;
+	font-size: 40px;
+	text-shadow: 2px 2px gray;
+	
+}
+
+header, footer {
+    padding: 1em;
+    color: white;
+    background-color: black;
+    clear: left;
+    text-align: center;
+}
+
+div.profilepic{
+	
+	height: 100px;
+	width: 150px;
+}
+
+img#profilepicture{
+
+	border-radius: 80%;
+	width:100%;
+	border: 1px solid;
+	border-color: black;
+
+}
+
+div.infoside{
+	
+	text-align:center;
+	float:left;
+	padding: 15px;
+	
+}
+
+div.menubar{
+	
+	border-bottom-right-radius: 30px;
+	border-bottom-left-radius: 30px;
+	background-color: black;
+}
+
+ul.menubar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li.menubar {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li.menubar a:hover {
+    color: red;
+	font-weight: bold;
+}
+
+header{
+	
+	border-top-right-radius: 30px;
+	border-top-left-radius: 30px;
+}
+
+footer{
+	
+	border-radius: 30px;
+}
+
+input#DescriptionText{
+	
+	width:200px;
+	height:50px; 
+	
+}
+
+p#pDescription{
+	
+	vertical-align: middle;
+	
+}

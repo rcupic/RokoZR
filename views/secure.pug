@@ -1,0 +1,23 @@
+extends layout
+
+block content
+ br
+ div(class="infoside")
+  div(class="profilepic")
+   img(src='/images/profilepic.jpg' alt='Error' id="profilepicture")
+  p <em>Username:</em> #{name}
+  p <em>Rank:</em> #{rank}
+  p <em>Hearts:</em> #{heart}
+  button(type='button' class='indexbtn' onclick="location.href='/newAd'") NEW AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/myAd'") MY AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/login'") LOGOUT
+  br
+  br
+ div(class='midpage')
+  h1 News
+  p This is FREE web application for mutually donating of Bitcoins. Every day you can donate to any ad once. 
+  p We trace every donation and one day you are going to pay back every coin earned.

@@ -1,0 +1,23 @@
+doctype html
+html
+ head
+  title HeartBid
+  script(type='text/javascript' src='/javascripts/CloseMyAd.js')
+  script(type='text/javascript' src='/javascripts/Search.js')
+  script(type='text/javascript' src='/javascripts/socket.io-client/dist/socket.io.js')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+ body
+  header
+   h1 Give and you shall recieve
+ div(class='menubar')
+  ul(class='menubar')
+   li(class='menubar') 
+    a(href='/') Home page
+   li(class='menubar') 
+    a(href='/secure') Secure
+   li(class='menubar')
+    a(href='/contact') Contact
+   li(class='menubar' style='float:right')
+    a(href='search') Search
+ block content
+footer Copyright &copy; Roko

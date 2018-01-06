@@ -1,0 +1,13 @@
+extends layout
+
+block content
+ div(class='midpage')
+  input(type="text" id='searchInput' name="search" placeholder="Search..")
+  button(class='indexbtn' onclick='Search()') Search
+  div(id='searchContent')
+   - var i=0
+   while i < 5
+    form(action='post')
+     p(id='pSearch'+i++) 
+     input(type='text' name='value' placeholder='Value')
+     input(type ='submit' value='Love')

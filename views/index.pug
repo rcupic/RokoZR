@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div(class='title')
+   p #{title}
+  div(class='midpage') 
+   div(class='buttonChoices')
+    button(type='button' class='indexbtn' onclick="location.href='/login'") LOGIN
+    br
+    br
+    button(type='button' class='indexbtn' onclick="location.href='/register'") REGISTER
+    br
+    br
