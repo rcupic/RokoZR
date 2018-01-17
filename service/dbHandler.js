@@ -14,9 +14,49 @@ class dbHandler{
 		connection.query(sql,function(err,results,fields){
 
 			
-			if(results==0) return callback('No changes made in db!');
+			if(results.length==0) return callback('No changes made in db!');
 
-			return callback(null);
+			return callback(null,results);
+		});
+		
+	};
+	
+	checkPassword(data,callback){
+		
+		const sql = 'SELECT * FROM usersdb.users WHERE users.password = "'+data+'";';
+		
+		connection.query(sql,function(err,results,fields){
+		
+		if(results.length == 0) return callback('Wrong password');
+		
+		return callback(null,results);
+		
+		});
+	};
+	
+	collectCoins(data,callback){
+		console.log(data);
+		const sql = 'UPDATE usersdb.users SET hearts = hearts + (SELECT likes FROM usersdb.ads,usersdb.users WHERE users.iduser=1 AND users.iduser = ads.iduser AND ads.active = 1) as unsigned WHERE users.iduser='+data+';';
+		
+		connection.query(sql,function(err,results,fields){
+			
+			if(results.length == 0) return callback('Error collecting coins!');
+			
+			return callback(null,results);
+			
+		});
+		
+	};
+	
+	deactAd(data,callback){
+		
+		const sql = 'UPDATE usersdb.ads SET active = 0 WHERE ads.iduser = '+data+' AND ads.active = 1;';
+		
+		connection.query(sql,function(err,results,fields){
+			
+			if(results.lentgh ==0) return callback('Error deactivation ad!');
+			
+			return callback(null,results);
 		});
 		
 	};
@@ -46,7 +86,7 @@ class dbHandler{
 
 			if(results.length!=0) return callback('Username is in use!');
 			
-			return callback(null);
+			return callback(null,results);
 			
 		});
 	};
@@ -66,7 +106,42 @@ class dbHandler{
 		});
 		
 	};
+	
+	likeAd(data,userid,callback){
+		
+		if(data==null) return callback('Invalid like input!');
+		
+		const sql = "INSERT INTO usersdb.likes (amount,userid,adsid)VALUES ("+data.amount+", "+userid+","+data.id+");"
+			
+		connection.query(sql,function(err,results,fields){
+				
+				if(err){
+					
+					return callback({'message' : 'something is wrong with liking 1'});
+					
+				}
+				
+				return callback(null,results);
+				
+		});
+	};
+	
+	updateLikes(data,callback){
+		
+		const sql = "UPDATE usersdb.ads SET likes = likes + "+data.amount+" WHERE idad = "+data.id+";";
+		
+		connection.query(sql,function(err,results,fields){
+			
+			if(err){
+				
+				return callback({'message' : 'something is wrong with liking 2'});
+			
+			}
+			
+		return callback(null,{"title" : "Thank you!","message" : "you donated "+data.amount});
 
+		});
+	};
 };
 
 module.exports = new dbHandler();
