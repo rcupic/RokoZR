@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const socket = require('../routes/sockets.js');
 const connection = require('../db/db.js');
+const dbHandler = require('../service/dbHandler.js');
+const Promise = require('promise');
 
 router.get('/',function(req,res,next){
 	
@@ -12,8 +14,7 @@ router.get('/',function(req,res,next){
 		if(results.length){
 			
 			const stringRes = JSON.parse(JSON.stringify(results));
-			console.log(stringRes);
-			res.render('myAd',{name: stringRes[0].name,value: stringRes[0].value,cathegory: stringRes[0].cathegory, description: stringRes[0].description});
+			res.render('myAd',{name: stringRes[0].name,likes: stringRes[0].likes,value: stringRes[0].value,cathegory: stringRes[0].cathegory, description: stringRes[0].description});
 		
 		}else{
 			
@@ -22,26 +23,47 @@ router.get('/',function(req,res,next){
 		}
 		
 	});
-	
-	socket.on('connection',function(client){//REACT TO CONNECTION FROM CLIENT
-	
-		console.log('someone connected');
-	
-		client.on('CloseMyAd',function(client){//EVENT FOR CLOSING AD AND COLLECTIN LIKES
-		
-			console.log(req.session.id);
-			console.log("closing");
-		
-			sql = "UPDATE usersdb.ads SET ads.active = 0 WHERE usersdb.ads.iduser="+req.session.id+" AND ads.active = 1";
-	
-	
-			connection.query(sql,function(err,results,fields){//DEACTIVATION OF AD
+});
 
-				socket.emit('finishedDeletion');//SEND CONFIRMATION TO CLIENT
+router.post('/',function(req,res,next){
+	
+	const promise = new Promise(function(){
+		
+		dbHandler.checkPassword(req.body.password,function(err,result){
+			
+			if(err){
 				
-			});	
-		});	
-	});
+				res.status(500).json(err);
+				return;
+			
+			}
+			console.log('1');
+		});
+	}).then(
+		
+		dbHandler.collectCoins(req.session.id,function(err,results){
+			
+			if(err){
+				
+				res.status(500).json(err);
+				return;
+				
+			}
+			console.log('2');
+		})	
+	).then(
+		dbHandler.deactAd(req.session.id,function(err,results){
+			
+			if(err){
+				
+				res.status(500).json(err);
+				return;
+				
+			}
+			console.log('3');
+			res.redirect('myAd');
+		})
+	);
 });
 
 module.exports = router;
