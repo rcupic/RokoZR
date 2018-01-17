@@ -27,17 +27,18 @@ router.post('/',function(req,res,next){
 	connection.query(sql,function(err,results,fields){
 	
 		if(!results.length){
-			connection.destroy();
+			
 			res.redirect('login');
 			
 		}else{
 		    
 			const stringRes = JSON.parse(JSON.stringify(results));//PARSING SQL RESULTS TO ACCES USER INFORMATIONS
+			
 			req.session.id = stringRes[0].iduser;
 			req.session.username = stringRes[0].username;
 			req.session.hearts = stringRes[0].hearts;
 			req.session.rank = stringRes[0].rank;
-			connection.destroy();
+			
 			res.redirect('secure');
 			
 		}
