@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const index = require('./routes/index');
 const register = require('./routes/register');
 const login = require('./routes/login');
+const logout = require('./routes/logout');
 const secure = require('./routes/secure');
 const newAd = require('./routes/newAd');
 const myAd = require('./routes/myAd');
@@ -50,6 +51,7 @@ app.use('/newAd',newAd);
 app.use('/myAd',myAd);
 app.use('/search',search);
 app.use('/contact',contact);
+app.use('/logout',logout);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
