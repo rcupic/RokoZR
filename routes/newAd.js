@@ -25,7 +25,7 @@ router.post('/',function(req,res,next){
 						
 			connection.query(sql,function(err,results,fields){
 				//THEN SERVE CLIENT HIS AD
-				res.render('myAd',{name: req.body.adName,value: req.body.adAmount,cathegory: req.body.adCathegory,description: req.body.adDescription});
+				res.render('myAd',{name: req.body.adName,value: req.body.adAmount,likes: 0,cathegory: req.body.adCathegory,description: req.body.adDescription});
 				
 			})
 		}
