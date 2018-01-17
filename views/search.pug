@@ -6,8 +6,7 @@ block content
   button(class='indexbtn' onclick='Search()') Search
   div(id='searchContent')
    - var i=0
-   while i < 5
-    form(action='post')
+   form(method='post')
+    while i < 5
      p(id='pSearch'+i++) 
-     input(type='text' name='value' placeholder='Value')
-     input(type ='submit' value='Love')
+    input(type='submit' id='submitButt' value='Submit')
