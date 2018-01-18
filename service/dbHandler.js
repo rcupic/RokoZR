@@ -36,7 +36,7 @@ class dbHandler{
 	
 	collectCoins(data,callback){
 		console.log(data);
-		const sql = 'UPDATE usersdb.users SET hearts = hearts + (SELECT likes FROM usersdb.ads,usersdb.users WHERE users.iduser=1 AND users.iduser = ads.iduser AND ads.active = 1) as unsigned WHERE users.iduser='+data+';';
+		const sql = 'UPDATE usersdb.users SET hearts = hearts + (SELECT SUM(likes) FROM usersdb.ads WHERE users.iduser='+data+' AND users.iduser = ads.iduser AND ads.active = 1) WHERE users.iduser='+data+';';
 		
 		connection.query(sql,function(err,results,fields){
 			
