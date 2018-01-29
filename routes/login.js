@@ -4,7 +4,7 @@ const connection = require('../db/db.js');
 
 router.get('/',function(req,res,next){
 	
-	if(req.session.username){
+	if(req.session.id){
 
 		res.redirect('secure');
 		
@@ -35,9 +35,6 @@ router.post('/',function(req,res,next){
 			const stringRes = JSON.parse(JSON.stringify(results));//PARSING SQL RESULTS TO ACCES USER INFORMATIONS
 			
 			req.session.id = stringRes[0].iduser;
-			req.session.username = stringRes[0].username;
-			req.session.hearts = stringRes[0].hearts;
-			req.session.rank = stringRes[0].rank;
 			
 			res.redirect('secure');
 			
