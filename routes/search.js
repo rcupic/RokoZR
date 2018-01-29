@@ -15,42 +15,46 @@ router.get('/', function(req, res, next) {
 		
 		client.on('search',function(value){
 						
-			dbHandler.searchAd(value,function(err,results){
+			dbHandler.searchAd(value,req.session.id,function(err,results){
 				
-				if(err) res.status(500).json(err);
+				if(err) {
+					
+					socket.emit('finishedSearch',results);
+
+				}
 				
 				socket.emit('finishedSearch',results);
+				
 			});				
 		});
 	});
 });
 
 router.post('/', function(req,res,next){
-	
-	const promise = new Promise(function(){
+
+		const promise = new Promise(function(){
+			console.log(req.body);
+			dbHandler.likeAd(req.body,req.session.id,function(err,results){
+				
+				if(err){
+					
+					res.status(500).json(err);
+				
+				}
+			});
+		}).then(
 		
-		dbHandler.likeAd(req.body,req.session.id,function(err,results){
+		dbHandler.updateLikes(req.body,function(err,results){
 			
 			if(err){
 				
-				res.status(500).json(err);
-				return;
-			
+					res.status(500).json(err);
+
 			}
-		});
-	}).then(
-	
-	dbHandler.updateLikes(req.body,function(err,results){
-		
-		if(err){
 			
-			res.status(500).json(err);
-			return;
-		}
-		
-		res.redirect('/');
-		
-	}));
+			res.redirect('/');
+			
+		}));
 });
 
 module.exports = router;
