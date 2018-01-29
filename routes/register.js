@@ -78,7 +78,7 @@ router.post('/',function(req,res,next){
 			})).catch(function(err){
 			
 			res.status(500).json(err);
-			
+			return;
 		});
 });
 
