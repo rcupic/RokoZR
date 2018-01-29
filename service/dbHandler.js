@@ -91,15 +91,15 @@ class dbHandler{
 		});
 	};
 	
-	searchAd(data,callback){
+	searchAd(data,id,callback){
 		
 		if(data==null) return callback('Invalid search input!');
 		
-		const sql = "SELECT * FROM usersdb.ads WHERE active='1' AND ads.name='"+data+"'";
+		const sql = "SELECT * FROM usersdb.ads,usersdb.users WHERE active='1' AND ads.name='"+data+"' AND ads.iduser = users.iduser AND users.iduser != "+id+"";
 		
 		connection.query(sql,function(err,results,fields){
 				
-			if(results.length==0) return callback('No such AD!');
+			if(results.length==0) return callback(null,results);
 			
 			return callback(null,JSON.parse(JSON.stringify(results)));
 
@@ -111,7 +111,7 @@ class dbHandler{
 		
 		if(data==null) return callback('Invalid like input!');
 		
-		const sql = "INSERT INTO usersdb.likes (amount,userid,adsid)VALUES ("+data.amount+", "+userid+","+data.id+");"
+		const sql = "INSERT INTO usersdb.likes (amount,userid,adsid)VALUES ("+data.amount+", "+userid+","+data.selected+");"
 			
 		connection.query(sql,function(err,results,fields){
 				
@@ -128,7 +128,7 @@ class dbHandler{
 	
 	updateLikes(data,callback){
 		
-		const sql = "UPDATE usersdb.ads SET likes = likes + "+data.amount+" WHERE idad = "+data.id+";";
+		const sql = "UPDATE usersdb.ads SET likes = likes + "+data.amount+" WHERE idad = "+data.selected+";";
 		
 		connection.query(sql,function(err,results,fields){
 			
@@ -138,7 +138,24 @@ class dbHandler{
 			
 			}
 			
-		return callback(null,{"title" : "Thank you!","message" : "you donated "+data.amount});
+			return callback(null,{"title" : "Thank you!","message" : "you donated "+data.amount});
+
+		});
+	};
+	
+	searchForUser(data,callback){
+		
+		const sql = "SELECT * FROM usersdb.users WHERE users.iduser = "+data+";";
+		
+		connection.query(sql,function(err,results,fields){
+			
+			if(err){
+				
+				return callback({'message' : 'Error in searchForUser'});
+			
+			}
+			
+			return callback(null,JSON.parse(JSON.stringify(results)));
 
 		});
 	};
