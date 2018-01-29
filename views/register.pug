@@ -3,26 +3,19 @@ extends layout
 block content
   div(class='midpage')
    h1 Registration
-   form(method='POST' action='/register')
-     div.form-group
-      label <em>Username:</em> 
-       input(type='text' required name='usrname')
-      br
-      br
-      label <em>Email:</em> 
-       input(type='email' required placeholder='name@email.com' name='email')
-      br
-      br
+   div(class='midPageForms')
+    form(method='POST' class='paintForm' action='/register')
       div.form-group
+       label <em>Username:</em> 
+        input(type='text' required name='usrname')
+       br
+       label <em>Email:</em> 
+        input(type='email' required placeholder='name@email.com' name='email')
+       br
        label <em>Password:</em> 
         input(type='password' required name='password')
-      br
-      br
-      div.form-group
+       br
        label <em>Reenter Password:</em> 
         input(type='password' required name='repassword')
-      br
-      br
-      button(type='submit' class='indexbtn') Register
-   br
-   br  
+       br
+       button(type='submit' class='indexbtn') Register
