@@ -1,6 +1,5 @@
 const express=require('express');
 const router = express.Router();
-const connection = require('../db/db.js');
 const accountant = require('../service/accountant.js');
 const async = require('async');
 const Promise = require('promise');
