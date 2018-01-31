@@ -20,7 +20,7 @@ router.post('/',function(req,res,next){
 		
 			if(err){
 			
-				res.status(500).json(err);
+				console.log(err);
 				res.redirect('register');
 			}
 		
@@ -30,7 +30,7 @@ router.post('/',function(req,res,next){
 		
 			if(err){
 			
-				res.status(500).json(err);
+				console.log(err);
 				res.redirect('register');
 			
 			}
@@ -41,7 +41,7 @@ router.post('/',function(req,res,next){
 		
 			if(err){
 			
-				res.status(500).json(err);
+				console.log(err);
 				res.redirect('register');
 			}
 		
@@ -62,7 +62,7 @@ router.post('/',function(req,res,next){
 		
 			if(err){
 				
-				res.status(500).json(err);
+				console.log(err);
 				res.redirect('register');
 				
 			}
@@ -71,13 +71,13 @@ router.post('/',function(req,res,next){
 			
 			dbHandler.addNewUser(req.body,function(err){
 				
-				if(err) res.status(500).json(err);
+				if(err) console.log(err);
 				
 				res.redirect('login');
 				
 			})).catch(function(err){
 			
-			res.status(500).json(err);
+			console.log(err);
 			return;
 		});
 });
