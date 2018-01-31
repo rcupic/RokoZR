@@ -1,15 +1,14 @@
 extends layout
 
 block content
-	div(class='midpage')
-		h1 Login
-		div(class='midPageForms')
-			form(method='post')
-				p
-					label(for='username') <em>Username:</em> 
-					input(type='text', name='username')
-				p
-					label(for='password') <em>Password:</em>  
-					input(type='password', name='password')
-				input(type='submit')
-			br
+ div(class='midpage')
+  h1 Login
+  div(class='midPageForms')
+   form(method='post')
+    p
+     label(for='username') <em>Username:</em> 
+     input(type='text', class='inputBox', name='username')
+    p
+     label(for='password') <em>Password:</em>  
+     input(type='password', class='inputBox', name='password')
+    input(type='submit')
