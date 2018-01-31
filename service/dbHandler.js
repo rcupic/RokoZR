@@ -193,6 +193,30 @@ class dbHandler{
 		});
 	};
 	//---------------------------------------------------------------------------------------------------------
+	getMyAd(data,callback){//GETTING AD FOR 'MYAD' PAGE
+		
+		const sql = "SELECT * FROM usersdb.ads,usersdb.users WHERE usersdb.users.iduser="+data+" AND usersdb.users.iduser = usersdb.ads.iduser AND usersdb.ads.active = 1";
+		
+		connection.query(sql,function(err,results,fields){//TREBA PROVJERITI PRIJE IMA LI UOPCE TRENUTNE REKLAME
+
+			if(err){
+				
+				return callback(err);
+				
+			}
+			if(results.length){
+				
+				const stringRes = JSON.parse(JSON.stringify(results));
+				
+				return callback(null,stringRes[0]);
+			
+			}else{
+				
+				return callback(null,0);
+				
+			}			
+		});
+	};
 };
 
 module.exports = new dbHandler();
