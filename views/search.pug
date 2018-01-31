@@ -2,8 +2,9 @@ extends layout
 
 block content
  div(class='midpage')
-  input(type="text" id='searchInput' name="search" placeholder="Search..")
-  button(class='indexbtn' onclick='Search()') Search
+  div(class="searchTab")
+   input(type="text" id='searchInput' name="search" placeholder="Search..")
+   button(id='searchButt' onclick='Search()') Search
   div(class='midPageForms')
    - var i=0
    form(method='post')
