@@ -4,7 +4,7 @@ block content
  br
  div(class="infoside")
   div(class="profilepic")
-   img(src='/images/profilepic.jpg' alt='Error' id="profilepicture")
+   img(value=!{picture} src='/images/'+picture alt='Error' id="profilepicture")
   p <em>Username:</em> #{name}
   p <em>Rank:</em> #{rank}
   p <em>Hearts:</em> #{heart}
