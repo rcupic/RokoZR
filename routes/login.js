@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const connection = require('../db/db.js');
+const dbHandler = require('../service/dbHandler.js');
 
 router.get('/',function(req,res,next){
 	
@@ -17,27 +17,17 @@ router.get('/',function(req,res,next){
 
 router.post('/',function(req,res,next){
 	
-	const name = req.body.username;
-	const pasw = req.body.password;
-	
-	
-	//SQL QUERY FOR LOGIN CHECK
-	const sql = "SELECT * FROM usersdb.users WHERE usersdb.users.username ="+"'"+name+"'"+" && usersdb.users.password='"+pasw+"'";
-	
-	connection.query(sql,function(err,results,fields){
-	
-		if(!results.length){
+	dbHandler.checkLogIn({name : req.body.username,pass : req.body.password},function(err,results){
+		
+		if(err){
 			
 			res.redirect('login');
 			
 		}else{
-		    
-			const stringRes = JSON.parse(JSON.stringify(results));//PARSING SQL RESULTS TO ACCES USER INFORMATIONS
 			
-			req.session.id = stringRes[0].iduser;
+		req.session.id = results;
 			
-			res.redirect('secure');
-			
+		res.redirect('secure');
 		}
 	});
 	
