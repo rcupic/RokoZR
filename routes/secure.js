@@ -10,11 +10,10 @@ router.get('/',function(req,res,next){
 			
 			if(err){
 				
-					res.status(500).json(err);
-					return;
+					console.log('Error in logging');
 			}
 			
-			res.render('secure',{name: results[0].username,heart: results[0].hearts,rank: results[0].rank});
+			res.render('secure',{name: results[0].username,heart: results[0].hearts,rank: results[0].rank,picture: results[0].picture});
 			
 		});
 			
