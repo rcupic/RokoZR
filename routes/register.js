@@ -29,6 +29,17 @@ router.post('/',function(req,res,next){
 			}
 		
 		})}).then(function(fromResolve){
+			
+			accountant.checkPasswordLength(req.body.password,function(err,result){
+				
+				if(err){
+					
+					console.log(err);
+					reject();
+				}
+			});
+			
+		}).then(function(fromResolve){
 
 		accountant.checkSpacePassword(req.body.password,function(err,result){
 		
@@ -39,7 +50,6 @@ router.post('/',function(req,res,next){
 			
 			}
 		
-			console.log(2);
 		})}
 		).then(function(fromResolve){
 	
