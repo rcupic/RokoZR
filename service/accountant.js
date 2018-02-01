@@ -51,7 +51,18 @@ class accountant {
 		
 		return callback('Your passwords don\'t match');
 		
-	};	
+	};
+	
+	checkPasswordLength(data,callback){
+		
+		if(data.length < 8){
+			
+			return callback('password has less than 8 characters');
+			
+		}
+		
+		return callback(null);
+	}
 	
 };
 
