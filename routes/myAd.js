@@ -26,43 +26,56 @@ router.get('/',function(req,res,next){
 
 router.post('/',function(req,res,next){
 	
-	const promise = new Promise(function(){
+	const promise = new Promise(function(resolve,reject){
 		
 		dbHandler.checkPassword(req.body.password,function(err,result){
 			
 			if(err){
 				
 				console.log(err);
-				return;
-			
+				reject();
+				
+			}else{
+				
+				resolve();
+				
 			}
-			
 		});
-	}).then(
+	});
+	
+	promise.then(function(fromResolve){
 		
 		dbHandler.collectCoins(req.session.id,function(err,results){
-			
+				
 			if(err){
-				
+					
 				console.log(err);
-				return;
-				
-			}
+				reject();
 			
-		})	
-	).then(
+			}		
+		});
+	}
+	).then(function(fromResolve){
+	
 		dbHandler.deactAd(req.session.id,function(err,results){
-			
-			if(err){
 				
+			if(err){
+					
 				console.log(err);
-				return;
+				reject();
 				
 			}
-			
-			res.redirect('myAd');
-		})
-	);
+				
+			res.redirect('secure');
+				
+			});
+	}
+	).catch(function(fromReject){
+		
+		console.log('rejected!');
+		res.redirect('myAd');
+		
+	});
 });
 
 module.exports = router;
