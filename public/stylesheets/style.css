@@ -66,7 +66,7 @@ div.midpage{
 
 h1{
 	
-	color: white;
+	color: lightGray;
 	
 }
 
@@ -161,6 +161,12 @@ header, footer {
     background-color: black;
     clear: left;
     text-align: center;
+}
+
+header{
+	
+	background-image: url('../images/headerpicture.png');
+	background-size: 100% 170%;
 }
 
 div.profilepic{
