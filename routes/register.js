@@ -13,71 +13,85 @@ router.get('/',function(req,res,next){
 
 router.post('/',function(req,res,next){
 	
-	const promise = new Promise(function(){
+	const promise = new Promise(function(resolve,reject){
 
 		accountant.checkIllegalChar(req.body.usrname,function(err){
 		
 			if(err){
 			
 				console.log(err);
-				res.redirect('register');
+				reject(1);
+				
+			}else{
+				
+				resolve();
+				
 			}
 		
-		})}).then(
+		})}).then(function(fromResolve){
 
 		accountant.checkSpacePassword(req.body.password,function(err,result){
 		
 			if(err){
 			
 				console.log(err);
-				res.redirect('register');
+				reject(2);
 			
 			}
 		
-		})).then(
+			console.log(2);
+		})}
+		).then(function(fromResolve){
 	
 		accountant.checkRePassword(req.body.password,req.body.repassword,function(err){
 		
 			if(err){
 			
 				console.log(err);
-				res.redirect('register');
+				reject();
 			}
-		
-		})).then(
+		})}
+		).then(function(fromResolve){
 	
 		dbHandler.checkForName(req.body.usrname,function(err){
 		
 			if(err){
 				
-				res.status(500).json(err);
-				res.redirect('register');
+				console.log(err);
+				reject();
 				
 			}
-		
-		})).then(
+		})}
+		).then(function(fromResolve){
 	
 		dbHandler.checkForMail(req.body.email,function(err){
 		
 			if(err){
 				
 				console.log(err);
-				res.redirect('register');
+				reject();
 				
 			}
-		
-		})).then(
+		})}
+		).then(function(fromResolve){
 			
 			dbHandler.addNewUser(req.body,function(err){
 				
-				if(err) console.log(err);
+				if(err){
+					
+					console.log(err);
+					reject();
+					
+				}else{
 				
-				res.redirect('login');
-				
-			})).catch(function(err){
+					res.redirect('login');
+					
+				}
+		})}
+		).catch(function(fromReject){
 			
-			console.log(err);
-			return;
+			res.redirect('register');
+
 		});
 });
 
