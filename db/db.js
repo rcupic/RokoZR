@@ -1,14 +1,14 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
 //DATABASE INFORMATIONS
-	var servername = "localhost";
-	var username = "root";
-	var paswrd = "roko";
-	var db= "usersdb";
+const servername = "localhost";
+const username = "root";
+const paswrd = "roko";
+const db= "usersdb";
 	
 	
 //CONNECTION CONFIGURATION
-	var connection = mysql.createConnection({
+	const connection = mysql.createConnection({
 		
 		host: servername,
 		user: username,
@@ -22,7 +22,6 @@ var mysql = require('mysql');
 		
 		if (err) {
 			
-			console.error('error connecting: ' + err.stack);
 			return err.stack;
 			
 		}

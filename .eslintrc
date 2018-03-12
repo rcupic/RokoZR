@@ -1,0 +1,53 @@
+{
+    "extends": [
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+  
+    "parserOptions": {
+      "ecmaVersion": 2017,
+      "sourceType": "module"
+    },
+  
+    "globals": {
+        "logger": true
+    },
+  
+    "env": {
+      "es6": true,
+      "node": true
+    },
+  
+    "rules":{
+      "no-extra-parens":1,
+      "default-case":1,
+      "no-alert":1,
+      "no-empty-function":1,
+      "no-eq-null":1,
+      "no-extra-bind":1,
+      "no-multi-spaces":1,
+      "no-return-assign":1,
+      "no-self-compare":1,
+      "no-sequences":1,
+      "no-throw-literal":1,
+      "no-unmodified-loop-condition":1,
+      "no-unused-expressions":1,
+      "no-useless-escape":1,
+      "vars-on-top":1,
+      "no-label-var":1,
+      "no-use-before-define":1,
+      "no-undefined":1,
+      "no-process-exit":1,
+      "semi": [1, "always"],
+      "camelcase":0,
+      "brace-style":1,
+      "no-var":1,
+      "no-console":1,
+      "space-before-blocks": 1,
+      "arrow-spacing": 1,
+      "prefer-const": 1,
+      "prefer-template": 1
+  
+    }
+  }

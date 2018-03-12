@@ -1,36 +1,19 @@
-const express = require('express');
-const router = express.Router();
-const dbHandler = require('../service/dbHandler.js');
+const userRouter = require('express').Router();
+const authController = require('../controller/authController');
 
-router.get('/',function(req,res,next){
-	
-	if(req.session.id){
-
-		res.redirect('secure');
-		
-	}else{
-		
-		res.render('login');
-	
-	}
+userRouter.get('/',function(req,res) {
+	if(req.session.id)
+		res.redirect('secure');	
+	res.render('login');	
 });
-
-router.post('/',function(req,res,next){
-	
-	dbHandler.checkLogIn({name : req.body.username,pass : req.body.password},function(err,results){
-		
-		if(err){
-			
+userRouter.post('/',function(req,res) {
+	authController.Login(req.body,(err,result) => {
+		if(err)
 			res.redirect('login');
-			
-		}else{
-			
-		req.session.id = results;
-			
-		res.redirect('secure');
+		else{
+			req.user = result;
+			res.redirect('secure');
 		}
-	});
-	
+	});	
 });
-
-module.exports = router;
+module.exports = userRouter;

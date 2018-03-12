@@ -3,16 +3,15 @@ const router = express.Router();
 const dbHandler = require('../service/dbHandler.js');
 const Promise = require('promise');
 
-router.get('/',function(req,res,next){
+router.get('/',function(req,res) {
 	
-	dbHandler.getMyAd(req.session.id,function(err,results){
+	dbHandler.getMyAd(req.session.id,function(err,results) {
 		
-		if(err){
+		if(err) {
 			
-			console.log(err);
-			return;
+			return err;
 			
-		}else if(results){
+		}else if(results) {
 			
 			res.render('myAd',{name: results.name,likes: results.likes,value: results.value,cathegory: results.cathegory, description: results.description});
 		
@@ -24,15 +23,14 @@ router.get('/',function(req,res,next){
 	});
 });
 
-router.post('/',function(req,res,next){
+router.post('/',function(req,res) {
 	
-	const promise = new Promise(function(resolve,reject){
+	const promise = new Promise(function(resolve,reject) {
 		
-		dbHandler.checkPassword(req.body.password,function(err,result){
+		dbHandler.checkPassword(req.body.password,function(err) {
 			
-			if(err){
+			if(err) {
 				
-				console.log(err);
 				reject();
 				
 			}else{
@@ -43,36 +41,24 @@ router.post('/',function(req,res,next){
 		});
 	});
 	
-	promise.then(function(fromResolve){
+	promise.then(function() {
 		
-		dbHandler.collectCoins(req.session.id,function(err,results){
+		dbHandler.collectCoins(req.session.id,function() {
 				
-			if(err){
-					
-				console.log(err);
-				reject();
-			
-			}		
+	
 		});
 	}
-	).then(function(fromResolve){
+	).then(function() {
 	
-		dbHandler.deactAd(req.session.id,function(err,results){
-				
-			if(err){
-					
-				console.log(err);
-				reject();
-				
-			}
+		dbHandler.deactAd(req.session.id,function() {
+
 				
 			res.redirect('secure');
 				
 			});
 	}
-	).catch(function(fromReject){
+	).catch(function() {
 		
-		console.log('rejected!');
 		res.redirect('myAd');
 		
 	});

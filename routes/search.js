@@ -5,17 +5,17 @@ const socket = require('../routes/sockets.js');
 const dbHandler = require('../service/dbHandler.js');
 const Promise = require('promise');
 
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
 	
 	if(!req.session.id) res.redirect('login');
 	
 	res.render('search',{res:5});
 
-	socket.on('connection',function(client){
+	socket.on('connection',function(client) {
 		
-		client.on('search',function(value){
+		client.on('search',function(value) {
 						
-			dbHandler.searchAd({name : value,id : req.session.id},function(err,results){
+			dbHandler.searchAd({name : value,id : req.session.id},function(err,results) {
 				
 				if(err) {
 					
@@ -30,37 +30,21 @@ router.get('/', function(req, res, next) {
 	});
 });
 
-router.post('/', function(req,res,next){
+router.post('/', function(req,res) {
 
-		const promise = new Promise(function(){
+		const promise = new Promise(function() {
 			
-			dbHandler.insertLike({amount : req.body.amount,id : req.session.id,selected : req.body.selected},function(err,results){
-				
-				if(err){
-					
-					console.log(err);
-				
-				}
+			dbHandler.insertLike({amount : req.body.amount,id : req.session.id,selected : req.body.selected},function() {
 			});
 		}).then(
 		
-		dbHandler.updateLikes({amount : req.body.amount,selected : req.body.selected},function(err,results){
-			
-			if(err){
-				
-					console.log(err);
-
-			}
+		dbHandler.updateLikes({amount : req.body.amount,selected : req.body.selected},function() {
+		
 			
 		})).then(
 		
-		dbHandler.likeAd({amount : req.body.amount,id : req.session.id},function(err,results){
+		dbHandler.likeAd({amount : req.body.amount,id : req.session.id},function() {
 			
-			if(err){
-				
-				console.log(err);
-				
-			}
 			
 			res.redirect('/');
 			
