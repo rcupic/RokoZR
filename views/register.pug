@@ -7,15 +7,10 @@ block content
     form(method='POST' class='paintForm' action='/register')
       div.form-group
        label <em>Username:</em> 
-        input(type='text' required name='usrname')
-       br
-       label <em>Email:</em> 
-        input(type='email' required placeholder='name@email.com' name='email')
+        input(type='text' required name='username')
        br
        label <em>Password:</em> 
         input(type='password' required name='password')
        br
-       label <em>Reenter Password:</em> 
-        input(type='password' required name='repassword')
        br
        button(type='submit' class='indexbtn') Register

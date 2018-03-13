@@ -3,13 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm-run-all --parallel start lint:watch",
+    "start": "npm-run-all --parallel open:src lint:watch",
     "lint:watch": "node node_modules/eslint-watch/bin/esw --watch",
     "create": "sequelize db:create dbevents --config=config/config.json",
     "migrations": "sequelize db:migrate --config=config/config.json",
     "seed": "sequelize db:seed:all --seeders-path seeders --config=config/config.json",
     "drop": "sequelize db:drop --config=config/config.json",
-    "recreate": "npm-run-all drop create migrations seed"
+    "recreate": "npm-run-all drop create migrations seed",
+    "open:src": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",

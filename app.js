@@ -10,6 +10,8 @@ const bodyParser = require('body-parser');
 //IMPORTING ALL ROUTES
 const index = require('./routes/index');
 const login = require('./routes/login');
+const secure = require('./routes/secure');
+const register = require('./routes/register');
 
 const app = express();
 
@@ -37,6 +39,8 @@ app.use(session({
 
 app.use('/',index);
 app.use('/login',login);
+app.use('/secure',secure);
+app.use('/register',register);
 
 app.set('port', 5002);
 const server = http.createServer(app);

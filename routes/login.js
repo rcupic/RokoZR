@@ -2,16 +2,17 @@ const userRouter = require('express').Router();
 const authController = require('../controller/authController');
 
 userRouter.get('/',function(req,res) {
-	if(req.session.id)
+	if(req.session.user)
 		res.redirect('secure');	
-	res.render('login');	
+	else
+		res.render('login');	
 });
 userRouter.post('/',function(req,res) {
 	authController.Login(req.body,(err,result) => {
 		if(err)
 			res.redirect('login');
 		else{
-			req.user = result;
+			req.session.user = result;
 			res.redirect('secure');
 		}
 	});	
