@@ -4,19 +4,11 @@ block content
  div(class='midpage')
   h1 New Ad
   div(class='midPageForms')
-   form(method='post')
+   form(method='post' action='/secure')
     p
-     label(for='adName') <em>Name:</em> 
-     input(type='text', class='inputBox', name='adName')
+     label(for='ad') <em>Name:</em> 
+     input(type='text', class='inputBox', name='name')
     p
-     label(for='adAmount') <em>Amout:</em> 
-     input(type='text', class='inputBox', name='adAmount')
-    p
-     label(for='adCathegory') <em>Cathegory:</em> 
-     select(name='adCathegory', class='inputBox')
-      each variable in ['Sport','Fun','Bussiness','Health']
-       option(value=variable) #{variable}
-    p(id='pDescription')
-     label(for='adDescription') <em>Description:</em> 
-     textarea(cols='40' class='inputBox' rows='5' id='DescriptionText' placeholder='Write your description...' name='adDescription')
+     label(for='amount') <em>Amout:</em> 
+     input(type='text', class='inputBox', name='amount')
     input(type='submit')
