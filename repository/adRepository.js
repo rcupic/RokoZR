@@ -16,5 +16,14 @@ class AdRepository {
                 return callback({'name':'Error','message': 'Name exists!'});
         });
     }
+    FindById(id,callback) {
+        db.ad.findOne({where: {userId: id}})
+        .then((fromResolve) => {
+            return callback(null,fromResolve);
+        })
+        .catch(err => {
+            return callback(err);
+        });
+    }
 }
 module.exports = new AdRepository();

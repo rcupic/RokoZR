@@ -1,11 +1,21 @@
 extends layout
 
 block content
-  div(class='title')
-   p #{title}
-  div(class='midpage') 
-   div(class='buttonChoices')
-    button(type='button' class='indexbtn' onclick="location.href='/login'") LOGIN
+ div(class='title')
+  p #{title}
+ div(class='midpage')
+  h1 Login
+  div(class='midPageForms')
+   form(method='post')
+    p
+     label(for='username') <em>Username:</em> 
+     input(type='text', class='inputBox', name='username')
+    p
+     label(for='password') <em>Password:</em>  
+     input(type='password', class='inputBox', name='password')
+    br
+    br
+    input(type='submit')
     br
     br
     button(type='button' class='indexbtn' onclick="location.href='/register'") REGISTER

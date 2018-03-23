@@ -11,7 +11,6 @@ registerRouter.post('/',function(req,res) {
 		if(err)
 			res.redirect('register');
 		else{
-			console.log(result.username);
 			req.session.user.username = result.username;
 			res.redirect('secure');
 		}

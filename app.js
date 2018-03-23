@@ -7,15 +7,13 @@ const cookieParser = require('cookie-parser');
 const session = require('client-sessions');
 const bodyParser = require('body-parser');
 
-//IMPORTING ALL ROUTES
 const index = require('./routes/index');
-const login = require('./routes/login');
 const secure = require('./routes/secure');
 const register = require('./routes/register');
+const ads = require('./routes/ads');
 
 const app = express();
 
-// view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
@@ -27,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//SESSION INFORMATIONS
 app.use(session({
 	
   cookieName: 'session',
@@ -38,9 +35,9 @@ app.use(session({
 }));
 
 app.use('/',index);
-app.use('/login',login);
 app.use('/secure',secure);
 app.use('/register',register);
+app.use('/ads',ads);
 
 app.set('port', 5002);
 const server = http.createServer(app);
