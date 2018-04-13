@@ -28,6 +28,6 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   ad.associate = function(models) {
       ad.belongsTo(models.user,{foreignKey: 'userId'});
-  }
+  };
   return ad;
 };
