@@ -9,12 +9,22 @@ class AdController {
         });
     }
     GetUsersAd(data,callback) {
-        adRepository.FindById(data,(err,result) => {
+        adRepository.FindByUserId(data,(err,result) => {
             if(err)
                 return callback(err);
             else
                 return callback(null,result);
         });
+    }
+    FindAllByName(data,callback) {
+        adRepository.FindAllByName(data,(err,result) => {
+            if(err)
+                return callback(err);
+            return callback(null,result);
+        });
+    }
+    DonateToAd(data) {
+        adRepository.Donate(data);
     }
 }
 module.exports = new AdController();

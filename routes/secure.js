@@ -1,9 +1,9 @@
 const secureRouter = require('express').Router();
 
 secureRouter.get('/',function(req,res) {
-	if(req.session.user) //CHECK IF USER IS LOGGED IN	
+	if(req.session.user)
 		res.render('secure',{name: req.session.user.username});	
 	else	
-		res.redirect('/login');
+		res.redirect('/');
 });
 module.exports = secureRouter;

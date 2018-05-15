@@ -4,20 +4,19 @@ block content
  div(class='title')
   p #{title}
  div(class='midpage')
-  h1 Login
   div(class='midPageForms')
    form(method='post')
+    hr
     p
-     label(for='username') <em>Username:</em> 
-     input(type='text', class='inputBox', name='username')
+     label(for='username') Username: 
+     input(type='text', name='username')
     p
-     label(for='password') <em>Password:</em>  
-     input(type='password', class='inputBox', name='password')
+     label(for='password') Password: 
+     input(type='password', name='password')
+    input(type='submit' value='LOGIN')
     br
-    br
-    input(type='submit')
-    br
-    br
+    hr
+    p Don't have an account?
     button(type='button' class='indexbtn' onclick="location.href='/register'") REGISTER
     br
     br

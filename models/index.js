@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
-const config = require('../config/config.json').development;
+const config = require('config').get('development');
 
 const models = {};
 const sequelize = new Sequelize(config.database, config.username, config.password, {dialect: config.dialect, operatorsAliases: config.operatorAliases, pool: config.pool});

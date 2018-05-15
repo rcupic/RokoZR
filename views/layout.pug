@@ -3,19 +3,25 @@ html
  head
   title HeartBid
   script(type='text/javascript' src='/javascripts/CloseMyAd.js')
-  script(type='text/javascript' src='/javascripts/Search.js')
+  script(type='text/javascript' src='/javascripts/searchAds.js')
   script(type='text/javascript' src='/javascripts/socket.io-client/dist/socket.io.js')
+  link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
   link(rel='stylesheet', href='/stylesheets/style.css')
+  link(href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css')
+
  body
   header
-   h1 Give and you shall recieve
- div(class='menubar')
-  ul(class='menubar')
-   li(class='menubar') 
-    a(href='/secure') Secure
-   li(class='menubar')
-    a(href='/contact') Contact
-   li(class='menubar' style='float:right')
-    a(href='search') Search
- block content
+   div(class='menubar')
+    ul(class='menubar')
+     li(class='menubar') 
+      a(href='/search')
+       i(class='fa fa-eye')
+     li(class='menubar') 
+      a(href='/secure')
+       i(class='fa fa-home')
+     li(class='menubar' style='float:left')
+       div(id='officialIcon')
+        p(id='iconText') BidDon
+         img(id='icon' src='/images/bell.png')
+  block content
 footer Copyright &copy; Roko

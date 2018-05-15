@@ -13,6 +13,9 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER
       },
+      donations: {
+        type: Sequelize.INTEGER
+      },
       userId: {
           type: Sequelize.INTEGER,
           references: {

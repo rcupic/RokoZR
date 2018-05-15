@@ -3,17 +3,19 @@ extends layout
 block content
  br
  div(class="infoside")
-  p <em>Username:</em> #{name}
-  button(type='button' class='indexbtn' onclick="location.href='/ads'") AD
+  p(id='username') #{name}
+  button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
   br
   br
-  button(type='button' class='indexbtn' onclick="location.href='ads/newAd'") CREATE AD
+  button(type='button' class='indexbtn' onclick="location.href='/ads/newAd'") CREATE AD
   br
   br
-  button(type='button' class='indexbtn' onclick="location.href='/logout'") LOGOUT
+  button(type='button' class='indexbtn' onclick="location.href='/logout'")
+   i(class='fas fa-sign-out-alt')
   br
   br
  div(class='midpage')
   h1 News
-  p This is FREE web application for mutually donating of Bitcoins. Every day you can donate to any ad once. 
-  p We trace every donation and one day you are going to pay back every coin earned.
+  p BidDon is web app for mutual donating of money. 
+  p With every donate you get better rank and more privileges.
+  p Backend running on node.js. Frontend made with pug(jade),css.Database is mysql.

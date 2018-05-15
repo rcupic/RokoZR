@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     amount: {
       type: DataTypes.INTEGER,
     },
+    donations: {
+      type: DataTypes.INTEGER,
+    },
     userId: {
         type: DataTypes.INTEGER,
         references: {

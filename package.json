@@ -5,16 +5,17 @@
   "scripts": {
     "start": "npm-run-all --parallel open:src lint:watch",
     "lint:watch": "node node_modules/eslint-watch/bin/esw --watch",
-    "create": "sequelize db:create dbevents --config=config/config.json",
-    "migrations": "sequelize db:migrate --config=config/config.json",
-    "seed": "sequelize db:seed:all --seeders-path seeders --config=config/config.json",
-    "drop": "sequelize db:drop --config=config/config.json",
+    "create": "sequelize db:create dbevents --config=config/local.json",
+    "migrations": "sequelize db:migrate --config=config/local.json",
+    "seed": "sequelize db:seed:all --seeders-path seeders --config=config/local.json",
+    "drop": "sequelize db:drop --config=config/local.json",
     "recreate": "npm-run-all drop create migrations seed",
     "open:src": "node app.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
     "client-sessions": "^0.8.0",
+    "config": "^1.30.0",
     "cookie-parser": "^1.4.3",
     "debug": "~2.6.3",
     "eslint": "^4.18.2",

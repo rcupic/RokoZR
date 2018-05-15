@@ -26,5 +26,18 @@ class UserRepository {
             return callback(err);
         });
     }
+    FindById(id,callback) {
+        db.user.findOne({
+            where: {
+                id: id
+            }
+        })
+        .then(fromResolve => {
+            return callback(null,fromResolve);
+        })
+        .catch(err => {
+            return callback(err);
+        });
+    }
 }
 module.exports = new UserRepository();
