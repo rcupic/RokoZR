@@ -3,20 +3,19 @@ extends layout
 block content
  div(class='title')
   p #{title}
+ div(class="infoside")
+  img(id='fesb' src='/images/fesb.png')
  div(class='midpage')
-  div(class='midPageForms')
-   form(method='post')
-    hr
-    p
-     label(for='username') Username: 
-     input(type='text', name='username')
-    p
-     label(for='password') Password: 
-     input(type='password', name='password')
-    input(type='submit' value='LOGIN')
-    br
-    hr
-    p Don't have an account?
-    button(type='button' class='indexbtn' onclick="location.href='/register'") REGISTER
-    br
-    br
+  form(method='post' autocomplete='off')
+   p
+    label(for='username') Username: 
+    input(type='text', name='username')
+   p
+    label(for='password') Password: 
+    input(type='password', name='password')
+   input(type='submit' value='LOGIN')
+  br
+  p Don't have an account?
+  button(type='button' class='indexbtn' onclick="location.href='/register'") REGISTER
+  br
+  br

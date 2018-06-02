@@ -11,20 +11,23 @@ adsRouter.post('/',(req,res) => {
     });
 });
 adsRouter.get('/myAd',(req,res) => {
-    adsController.GetUsersAd(req.session.user.id,(err,result) => {
-        if(err)
-            res.render('secure',{name:req.session.user.username});
-        else if(result === null) 
-            res.render('newAd');
-        else
-            res.render('myAd',{name:result.dataValues.name,value:result.dataValues.amount});    
-    });
+    if(req.session.user) {
+        adsController.GetUsersAd(req.session.user.id,(err,result) => {
+            if(err)
+                res.render('secure',{name:req.session.user.username,account:req.session.user.account});
+            else if(result === null) 
+                res.render('newAd');
+            else
+                res.render('myAd',{name:req.session.user.username,account:req.session.user.account,adName:result.dataValues.name,donations:result.dataValues.donations});    
+        });
+    }else
+        res.redirect('/');
 });
 adsRouter.get('/newAd',(req,res) => {
     if(req.session.user) {
         adsController.GetUsersAd(req.session.user.id,(err,result) => {
             if(err)
-                res.render('secure',{name:req.session.user.username});
+                res.render('secure',{name:req.session.user.username,account:req.session.user.account});
             else if(result !== null) 
                 res.render('myAd',{name:result.dataValues.name,value:result.dataValues.amount});
             else

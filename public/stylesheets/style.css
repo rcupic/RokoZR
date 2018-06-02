@@ -4,7 +4,10 @@ div.myad{
 	border-radius: 30px;
 }
 body {
-	background-image: url('/images/background.jpg')
+	background-image: url('/images/background.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;	
 }
 hr{
 	height: 15px;
@@ -14,8 +17,16 @@ img#icon{
 	size:20px;
 	width: 20px;
 }
+img#fesb{
+	transform: rotate(270deg);
+	width: 300px;
+	size: 300px;
+	padding-top: 30px;
+	padding-bottom: 140px;
+}
 p#iconText{
-	transform: rotate(320deg);
+	transform: rotate(340deg);
+	color: green;
 }
 div.form-group{
 	
@@ -75,6 +86,9 @@ input[type=submit]{
 	font-size: 18px;
 	color: black;
 	outline:none;
+}
+button#submitButt:hover{
+	cursor:pointer;
 }
 
 button.indexbtn:hover{

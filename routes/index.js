@@ -13,6 +13,7 @@ userRouter.post('/',function(req,res) {
 			res.redirect('index');
 		else{
 			req.session.user = result;
+			console.log(result);
 			res.redirect('secure');
 		}
 	});	

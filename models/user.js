@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
     password: {
       type: DataTypes.STRING,
     },
+    account: {
+      type: DataTypes.INTEGER
+    },
     createdAt: {
       type: DataTypes.DATE
     },
@@ -19,5 +22,8 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   }, {});
+  user.associate = function(models) {
+    user.hasMany(models.ad,{foreignKey: 'userId'});
+};
   return user;
 };

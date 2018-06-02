@@ -15,7 +15,8 @@ class UserRepository {
     Register(model,callback) {
         db.user.findOrCreate({where: {username: model.username},defaults:{
             username: model.username,
-            password: model.password
+            password: model.password,
+            account: 2000
         }})
         .spread((user,created) => {
             if(created) {
@@ -37,6 +38,19 @@ class UserRepository {
         })
         .catch(err => {
             return callback(err);
+        });
+    }
+    Update(model,callback) {
+        db.user.update(model,{
+            where: {
+                id: model.id
+            }
+        })
+        .then(fromResolve => {
+            return callback(null,fromResolve);
+        })
+        .catch(err => {
+            callback(err);
         });
     }
 }

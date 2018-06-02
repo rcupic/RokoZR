@@ -20,8 +20,8 @@ function Search(){
 				
 			}else{
 				while(i<data.length){
-					document.getElementById('pSearch'+i).innerHTML = "<p>Name: "+data[i].name+"</p><p>Amount: "+data[i].amount+" hrk</p><p>Donations: "+data[i].donations+" hrk</p>";	
-					document.getElementById('formSub'+i).innerHTML = "<p><button type='submit' id='submitButt'><i class='fas fa-hand-holding-usd'></i></button><input type='text' name='donations' values='"+i+"' placeholder='Amount...'><p><hr>";
+					document.getElementById('pSearch'+i).innerHTML = "<p>Name: "+data[i].name+"</p><p>Amount: "+data[i].amount+" hrk</p><p>Donations: "+data[i].donations+" hrk</p><p>By: "+data[i].user.username+"</p>";	
+					document.getElementById('formSub'+i).innerHTML = "<p><button type='submit' id='submitButt'><i class='fas fa-hand-holding-usd'></i></button><input type='text' name='donations' values='"+data[i].id+"' placeholder='Amount...'><p><hr>";
 					document.getElementById('form'+i).action = "?id="+data[i++].id;
 				}
 			}

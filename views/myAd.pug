@@ -1,10 +1,25 @@
 extends layout
 
 block content
+ br
+ div(class="infoside")
+  p(id='username') #{name}
+  p(id='account') Account: #{account} 
+   i(class="fas fa-address-card")
+  button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/ads/newAd'") CREATE AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/logout'")
+   i(class='fas fa-sign-out-alt')
+  br
+  br
  div(class='midpage')
   div(class='midPageForms')
    h1 My Ad
-   label <em>Name:</em> #{name}
+   label <em>Name:</em> #{adName}
    br
    br
-   label <em>Value:</em> #{value}
+   label <em>Donations:</em> #{donations}

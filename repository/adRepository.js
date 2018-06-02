@@ -1,5 +1,5 @@
 const db = require('../models');
-const sequelize = require('sequelize')
+const sequelize = require('sequelize');
 const Op = sequelize.Op;
 
 class AdRepository {
@@ -9,7 +9,8 @@ class AdRepository {
             defaults:{
                 name:model.name,
                 amount:model.amount,
-                userId:model.userId 
+                userId:model.userId ,
+                donations: 0
             }}
         ).spread((ad,created) => {
             if(created)
@@ -36,7 +37,13 @@ class AdRepository {
                     userId: {
                         [Op.ne]: model.userId
                     }       
-                }
+                },
+                include: [
+                    {
+                        model: db.user,
+                        attributes: ['username']
+                    }
+                ]
             }
         )
         .then(fromResolve => {
