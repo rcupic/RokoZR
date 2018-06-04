@@ -5,7 +5,9 @@ block content
  div(class="infoside")
   p(id='username') #{name}
   p(id='account') Account: #{account} 
-   i(class="fas fa-address-card")
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
   button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
   br
   br
@@ -20,9 +22,8 @@ block content
   div(class="searchTab")
    button(id='searchButt' onclick='Search()')
     i(class='fab fa-sistrix')
-   input(type="text" id='searchInput' name="search" placeholder="Search.." autocomplete='off')
+   input(type="text" id='searchInput' name="search" onfocus="this.placeholder= ''" onblur="this.placeholder= 'Search...'" placeholder="Search..." autocomplete='off')
   div(id='divWithData' class='midPageForms')
-   hr
    - var i=0
     while i < 5
      form(id = 'form'+i method='post' action= '/?' autocomplete='off')

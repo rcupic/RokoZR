@@ -8,20 +8,28 @@ module.exports = {
         autoIncrement: true
       },
       name: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       amount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       donations: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       userId: {
           type: Sequelize.INTEGER,
           references: {
               model: 'users',
               key: 'id'
-          }
+          },
+          allowNull: false
+      },
+      isActive: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       createdAt: {
         type: Sequelize.DATE

@@ -5,7 +5,9 @@ block content
  div(class="infoside")
   p(id='username') #{name}
   p(id='account') Account: #{account} 
-   i(class="fas fa-address-card")
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
   button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
   br
   br
@@ -18,6 +20,6 @@ block content
   br
  div(class='midpage')
   h1 News
-  p BidDon is web app for mutual donating of money. 
+  p GreenRabbit is web app for mutual donating of money. 
   p With every donate you get better rank and more privileges.
   p Backend running on node.js. Frontend made with pug(jade),css.Database is mysql.

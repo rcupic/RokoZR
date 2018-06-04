@@ -4,11 +4,11 @@ block content
  div(class='midpage')
   h1 New Ad
   div(class='midPageForms')
-   form(method='post' action='/ads')
+   form(method='post' autocomplete='off' action='/ads')
     p
-     label(for='ad') <em>Name:</em> 
+     label(for='ad') Name: 
      input(type='text', class='inputBox', name='name')
     p
-     label(for='amount') <em>Amout:</em> 
+     label(for='amount') Amout:
      input(type='text', class='inputBox', name='amount')
-    input(type='submit')
+    input(type='submit',value='Submit')

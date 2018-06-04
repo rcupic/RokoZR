@@ -8,12 +8,19 @@ module.exports = (sequelize, DataTypes) => {
     },
     username: {
       type: DataTypes.STRING,
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
+      allowNull:false
     },
     account: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    balance: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     },
     createdAt: {
       type: DataTypes.DATE

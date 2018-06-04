@@ -5,7 +5,9 @@ block content
  div(class="infoside")
   p(id='username') #{name}
   p(id='account') Account: #{account} 
-   i(class="fas fa-address-card")
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
   button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
   br
   br
@@ -23,3 +25,7 @@ block content
    br
    br
    label <em>Donations:</em> #{donations}
+   br
+   br
+   button(type='button' class='indexbtn' onClick='CloseMyAd()')
+    i(class='fas fa-check-circle')

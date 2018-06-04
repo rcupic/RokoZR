@@ -227,3 +227,6 @@ p#pDescription{
 	vertical-align: middle;
 	
 }
+textarea:focus, input:focus{
+    outline: none;
+}

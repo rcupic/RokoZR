@@ -8,13 +8,20 @@ module.exports = {
         autoIncrement: true
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       account: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
+      },
+      balance: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         type: Sequelize.DATE

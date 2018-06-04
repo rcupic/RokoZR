@@ -4,12 +4,12 @@ block content
   div(class='midpage')
    h1 Registration
    div(class='midPageForms')
-    form(method='POST' class='paintForm' action='/register')
+    form(method='POST' autocomplete='off' class='paintForm')
       div.form-group
-       label <em>Username:</em> 
+       label Username: 
         input(type='text' required name='username')
        br
-       label <em>Password:</em> 
+       label Password: 
         input(type='password' required name='password')
        br
        br

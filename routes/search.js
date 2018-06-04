@@ -1,29 +1,36 @@
-const SearchRouter = require('express').Router();
-const AdsController = require('../controller/adsController');
+const SearchRouter = require("express").Router();
+const AdsController = require("../controller/adsController");
 
-SearchRouter.get('/',(req,res) => {
-    if(req.session.user)
-        res.render('search',{name:req.session.user.username,account:req.session.user.account});
-    else
-        res.redirect('/');
+SearchRouter.get("/", (req, res) => {
+  if (req.session.user)
+    res.render("search", {
+      name: req.session.user.username,
+      account: req.session.user.account,
+      balance: req.session.user.balance
+    });
+  else res.redirect("/");
 });
-SearchRouter.post('/',(req,res) => {
-    if(req.session.user) {
-        if(req.session.user.account < req.body.donations)
-            res.redirect('/');
-        AdsController.DonateToAd(
-            {
-                id: req.query.id,
-                donations:req.body.donations
-            },
-            {
-                id:req.session.user.id,
-                account:req.session.user.account-req.body.donations
-            }
-        );
-        req.session.user.account -= req.body.donations;
-        res.render('search',{name:req.session.user.username,account:req.session.user.account});
-    }else 
-        res.redirect('/');
+SearchRouter.post("/", (req, res) => {
+  if (req.session.user) {
+    if (req.session.user.account < parseInt(req.body.donations))
+      res.redirect("/");
+    else {
+      req.session.user.balance =
+        parseInt(req.session.user.balance) + parseInt(req.body.donations);
+      req.session.user.account -= req.body.donations;
+      AdsController.DonateToAd(
+        {
+          id: req.query.id,
+          donations: req.body.donations
+        },
+        {
+          id: req.session.user.id,
+          account: req.session.user.account,
+          balance: req.session.user.balance
+        }
+      );
+      res.redirect("/secure");
+    }
+  } else res.redirect("/");
 });
 module.exports = SearchRouter;

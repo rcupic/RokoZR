@@ -13,6 +13,7 @@ const secure = require('./routes/secure');
 const register = require('./routes/register');
 const ads = require('./routes/ads');
 const search = require('./routes/search');
+const creditCard = require('./routes/creditCard');
 
 const app = express();
 
@@ -49,6 +50,7 @@ app.use('/logout',(req,res) => {
   req.session.user = null;
   res.redirect('/');
 });
+app.use('/creditCard',creditCard);
 
 app.set('port', config.server.port);
 const server = http.createServer(app);

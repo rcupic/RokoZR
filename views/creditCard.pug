@@ -1,0 +1,16 @@
+extends layout
+
+block content
+ div(class='title')
+  p #{title}
+ div(class="infoside")
+  img(id='fesb' src='/images/fesb.png')
+ div(class='midpage')
+  form(method='post' autocomplete='off')
+   p
+    label(for='cardNo') Card Number: 
+    input(type='text', name='cardNo')
+   p
+    label(for='amount') Amount: 
+    input(type='text', name='amount')
+   input(type='submit' value='Purchase')
