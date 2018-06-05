@@ -34,9 +34,9 @@ class AdRepository {
         return callback(err);
       });
   }
-  FindAllByName(model, callback) {
+  FindByName(model, callback) {
     db.ad
-      .findAll({
+      .findOne({
         where: {
           name: model.search,
           userId: {

@@ -15,6 +15,5 @@ function CloseMyAd(){
 	})
 	.catch(err => {
 		console.log(err);
-	})
-	
+	});
 }

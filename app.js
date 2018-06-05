@@ -14,13 +14,15 @@ const register = require('./routes/register');
 const ads = require('./routes/ads');
 const search = require('./routes/search');
 const creditCard = require('./routes/creditCard');
+const users = require('./routes/users');
+const messages = require('./routes/messages');
 
 const app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(favicon(path.join(__dirname, 'public', 'bell.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'fav.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -51,6 +53,8 @@ app.use('/logout',(req,res) => {
   res.redirect('/');
 });
 app.use('/creditCard',creditCard);
+app.use('/users',users);
+app.use('/messages',messages);
 
 app.set('port', config.server.port);
 const server = http.createServer(app);

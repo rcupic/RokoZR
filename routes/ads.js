@@ -49,7 +49,7 @@ adsRouter.get("/newAd", (req, res) => {
   res.redirect("/ads/myAd");
 });
 adsRouter.get("/", (req, res) => {
-  adsController.FindAllByName(
+  adsController.FindByName(
     { search: req.query.search, userId: req.session.user.id },
     (err, result) => {
       if (err) res.send(null);

@@ -15,8 +15,8 @@ class AdController {
       else return callback(null, result);
     });
   }
-  FindAllByName(data, callback) {
-    adRepository.FindAllByName(data, (err, result) => {
+  FindByName(data, callback) {
+    adRepository.FindByName(data, (err, result) => {
       if (err) return callback(err);
       return callback(null, result);
     });

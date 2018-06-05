@@ -1,0 +1,28 @@
+extends layout
+
+block content
+ br
+ div(class="infoside")
+  p(id='username') #{name}
+  p(id='account') Account: #{account} 
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
+  button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/ads/newAd'") CREATE AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/logout'")
+   i(class='fas fa-sign-out-alt')
+  br
+  br
+ div(class='midpage' value= '#{messages}')
+  nav(id='navMessages')
+   ul(id='ulMessages' style='list-style-type:none')
+    - var i = 0
+    each message in messages
+     li= message.creator.username+': '+message.text
+      i(class="fas fa-trash-alt" class='messageTresh')
+    

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+ br
+ div(class="infoside")
+  p(id='username') #{name}
+  p(id='account') Account: #{account} 
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
+  button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/ads/newAd'") CREATE AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/logout'")
+   i(class='fas fa-sign-out-alt')
+  br
+  br
+ div(class='midpage')
+  div(class='midPageForms')
+   h1 Message
+   form(method="POST")
+    p Text: 
+     textarea(name="text")
+    input(type='submit' class='indexbtn' value='Send')

@@ -10,5 +10,12 @@ class userController {
       return callback(null, user);
     });
   }
+  FindByName(data,callback) {
+    userRepository.FindByName(data,(err,result) => {
+      if(err)
+        return callback(err);
+      return callback(null,result);
+    });
+  }
 }
 module.exports = new userController();

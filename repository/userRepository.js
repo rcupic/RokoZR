@@ -66,5 +66,21 @@ class UserRepository {
         return;
       });
   }
+  FindByName(model,callback) {
+    console.log(model);
+    db.user
+      .findOne({
+        where: {
+            username: model.search,
+        }
+      })
+      .then(user => {
+        return callback(null,user);
+      })
+      .catch(err => {
+        console.log(err);
+        return callback(err);
+      })
+  }
 }
 module.exports = new UserRepository();
