@@ -15,5 +15,12 @@ class MessagesController {
       return callback(null,messages);
     });
   }
+  Delete(data,callback) {
+    messagesRepository.Delete(data,err => {
+      if(err)
+        return callback(err);
+      return callback(null);
+    });
+  }
 }
 module.exports = new MessagesController();

@@ -1,17 +1,16 @@
-const registerRouter = require("express").Router();
-const authController = require("../controller/authController");
+const registerRouter = require('express').Router();
+const authController = require('../controller/authController');
 
-registerRouter.get("/", function(req, res) {
-  res.render("register");
+registerRouter.get('/', function(req, res) {
+  res.render('register');
 });
-registerRouter.post("/", function(req, res) {
+registerRouter.post('/', function(req, res) {
   authController.Register(req.body, (err, result) => {
-    if (err) {
-      console.log(err);
-      res.redirect("register");
-    } else {
+    console.log(err);
+    if (err) res.redirect('register');
+    else {
       req.session.user = result;
-      res.redirect("secure");
+      res.redirect('secure');
     }
   });
 });

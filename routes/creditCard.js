@@ -1,22 +1,52 @@
-const creditCardRouter = require("express").Router();
-const userController = require("../controller/userController");
+const creditCardRouter = require('express').Router();
+const userController = require('../controller/userController');
+const creditCardController = require('../controller/creditCardController');
+const async = require('async');
 
-creditCardRouter.get("/", function(req, res) {
-  if (req.session.user)
-    res.render("creditCard", {
-      name: req.session.user.username,
-      account: req.session.user.account,
-      balance: req.session.user.balance
-    });
-  else res.redirect("/");
-});
-creditCardRouter.post("/", (req, res) => {
+creditCardRouter.get('/', function(req, res) {
   if (req.session.user) {
-    userController.Update({
-      id: req.session.user.id,
-      account: parseInt(req.session.user.account) + parseInt(req.body.amount)
+    userController.FindById(req.session.user.id, (err, user) => {
+      if (err) {
+        res.redirect("/");
+      }
+      req.session.user = user;
+      res.render('creditCard', {
+        name: req.session.user.username,
+        account: req.session.user.account,
+        balance: req.session.user.balance
+      });
     });
-    res.redirect("/secure");
-  } else res.redirect("/");
+  }else res.redirect('/');
+});
+creditCardRouter.post('/', (req, res) => {
+  console.log(req.body);
+  if (req.session.user) {
+    async.waterfall(
+      [
+        callback => {
+          creditCardController.FindByUserAndId({cardNo:req.body.cardNo,pin:req.body.cardPin,userId:req.session.user.id},(err,result) => {
+            if(err)
+              return callback(err);
+            if(!result)
+              return callback({name:'error',message:'There is no card with that credential'});
+            return callback(null);
+          });
+        },
+        callback => {
+          userController.Update({
+            id: req.session.user.id,
+            account: parseInt(req.session.user.account) + parseInt(req.body.amount)
+          });
+          return callback(null);
+        }
+      ],
+      err => {
+        if(err)
+          res.json(err);
+        else
+          res.json('');
+      } 
+    );
+  } else res.redirect('/');
 });
 module.exports = creditCardRouter;

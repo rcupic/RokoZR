@@ -1,19 +1,24 @@
-const SearchRouter = require("express").Router();
-const AdsController = require("../controller/adsController");
+const SearchRouter = require('express').Router();
+const AdsController = require('../controller/adsController');
+const userController = require('../controller/userController');
 
-SearchRouter.get("/", (req, res) => {
-  if (req.session.user)
-    res.render("search", {
+SearchRouter.get('/', (req, res) => {
+  if (req.session.user) {
+    userController.FindById(req.session.user.id, (err, user) => {
+      if (err) res.redirect('/');
+      req.session.user = user;
+    });
+    res.render('search', {
       name: req.session.user.username,
       account: req.session.user.account,
       balance: req.session.user.balance
     });
-  else res.redirect("/");
+  } else res.redirect('/');
 });
-SearchRouter.post("/", (req, res) => {
+SearchRouter.post('/', (req, res) => {
   if (req.session.user) {
     if (req.session.user.account < parseInt(req.body.donations))
-      res.redirect("/");
+      res.redirect('/');
     else {
       req.session.user.balance =
         parseInt(req.session.user.balance) + parseInt(req.body.donations);
@@ -29,8 +34,8 @@ SearchRouter.post("/", (req, res) => {
           balance: req.session.user.balance
         }
       );
-      res.redirect("/secure");
+      res.redirect('/secure');
     }
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
 module.exports = SearchRouter;

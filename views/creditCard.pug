@@ -4,13 +4,31 @@ block content
  div(class='title')
   p #{title}
  div(class="infoside")
-  img(id='fesb' src='/images/fesb.png')
+  p(id='username') #{name}
+  p(id='account') Account: #{account} 
+   a(href='http://localhost:5001/creditCard')
+    i(class="fas fa-credit-card")
+  p(id='balance') Balance: #{balance}
+  button(type='button' class='indexbtn' onclick="location.href='/ads/myAd'") MY AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/ads/newAd'") CREATE AD
+  br
+  br
+  button(type='button' class='indexbtn' onclick="location.href='/logout'")
+   i(class='fas fa-sign-out-alt')
+  br
+  br
  div(class='midpage')
   form(method='post' autocomplete='off')
    p
-    label(for='cardNo') Card Number: 
-    input(type='text', name='cardNo')
+    label(for='number') Card Number: 
+    input(type='number' id='cardNo' name='cardNo')
    p
-    label(for='amount') Amount: 
-    input(type='text', name='amount')
-   input(type='submit' value='Purchase')
+    label(for='number') Card PIN: 
+    input(type='number' id='cardPin' name='cardPin')
+   p
+    label(for='number') Amount: 
+    input(type='number' id='amount' name='amount')
+  button(type='button' class='indexbtn' onclick='Purchase()') Purchase
+  p(id='errorP')

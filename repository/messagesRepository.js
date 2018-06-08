@@ -28,5 +28,18 @@ class MessagesRepository {
             return callback(err);
         });
     }
+    Delete(model,callback) {
+        db.message.destroy({
+            where: {
+                id: model
+            }
+        })
+        .then(() => {
+            return callback(null);
+        })
+        .catch(err => {
+            return callback(err);
+        });
+    }
 }
 module.exports = new MessagesRepository();

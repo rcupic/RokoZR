@@ -6,11 +6,16 @@ block content
    div(class='midPageForms')
     form(method='POST' autocomplete='off' class='paintForm')
       div.form-group
-       label Username: 
-        input(type='text' required name='username')
-       br
-       label Password: 
-        input(type='password' required name='password')
-       br
-       br
+       p
+        label Username: 
+         input(type='text' required name='username')
+       p
+        label Password: 
+         input(type='password' required name='password')
+       p
+        label Number: 
+         input(type='number' required name='number')
+       p
+        label PIN: 
+         input(type='pin' required name='pin')
        button(type='submit' class='indexbtn') Register

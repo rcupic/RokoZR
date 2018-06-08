@@ -11,8 +11,8 @@ body {
 	height: 100%;	
 }
 hr{
-	height: 15px;
-	background-color: rgba(0, 0, 0,0.3);
+	height: 2px;
+	background-color: rgba(128, 0, 128, 0.207);
 }
 img#icon{
 	size:20px;
@@ -125,6 +125,7 @@ html{
 
 div.midpage{
 	
+	opacity:1;
 	margin-left: 150px;
 	text-align: center;
 	padding: 20px;
@@ -256,6 +257,12 @@ ul#ulMessages li{
 	border:1px solid;
 	border-color: rgba(0, 0, 0, 0.124);
 }
-i.messageTresh{
-	float: right;
+button.treshBtn:hover{
+	cursor: pointer;
+}
+button.treshBtn:active{
+	border: none;
+}
+button.treshBtn:focus{
+	outline: none;
 }

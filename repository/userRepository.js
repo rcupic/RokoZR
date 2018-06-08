@@ -67,20 +67,29 @@ class UserRepository {
       });
   }
   FindByName(model,callback) {
-    console.log(model);
     db.user
       .findOne({
         where: {
             username: model.search,
+        },
+        include: {
+          model: db.ad,
+          as: 'adOwner',
+          attributes: ['name'] ,
+          where: {
+            isActive: true
+          },
+          required: false
         }
-      })
+      }
+      )
       .then(user => {
         return callback(null,user);
       })
       .catch(err => {
         console.log(err);
         return callback(err);
-      })
+      });
   }
 }
 module.exports = new UserRepository();

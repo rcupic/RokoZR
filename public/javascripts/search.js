@@ -18,7 +18,7 @@ function Search(){
 							document.getElementById('formSub0').innerHTML = "";
 							document.getElementById('butSub0').innerHTML = "";
 						}							
-						document.getElementById('pSearch0').innerHTML = "<hr><p>Name: "+data.name+"</p><p>Amount: "+data.amount+" hrk</p><p>Donations: "+data.donations+" hrk</p><p>By: "+data.user.username+"</p>";	
+						document.getElementById('pSearch0').innerHTML = "<hr><p>Name: "+data.name+"</p><p>Amount: "+data.amount+" hrk</p><p>Donations: "+data.donations+" hrk</p><p>By: "+data.adOwner.username+"</p>";	
 						document.getElementById('formSub0').innerHTML = "<p><input style='text-align:right' type='submit'  id='submitButt' value='Submit'><input type='text' name='donations' values='"+data.id+"' onfocus= 'this.placeholder=&quot;&quot' onblur='this.placeholder=&quot Amount...&quot' placeholder='Amount...'><p><hr>";
 						document.getElementById('form0').action = "?id="+data.id;
 					})	
@@ -43,8 +43,12 @@ function Search(){
 						document.getElementById('pSearch0').innerHTML = "<p>No such user.</p>";
 						document.getElementById('formSub0').innerHTML = "";
 						document.getElementById('butSub0').innerHTML = "";
+					}else if(data.adOwner[0]){
+						document.getElementById('pSearch0').innerHTML = "<hr><p>Username: "+data.username+"</p><p>Balance: "+data.balance+" hrk</p><p>Ad: "+data.adOwner[0].name+"</p>";	
+						document.getElementById('formSub0').innerHTML = "<p><a href='/messages?id="+data.id+"'><i class='fas fa-envelope'></i></a></p>";
+						document.getElementById('form0').action = "?id="+data.id;
 					}else {
-						document.getElementById('pSearch0').innerHTML = "<hr><p>Username: "+data.username+"</p><p>Balance: "+data.balance+" hrk</p>";	
+						document.getElementById('pSearch0').innerHTML = "<hr><p>Username: "+data.username+"</p><p>Balance: "+data.balance+" hrk</p><p>No ad.</p>";	
 						document.getElementById('formSub0').innerHTML = "<p><a href='/messages?id="+data.id+"'><i class='fas fa-envelope'></i></a></p>";
 						document.getElementById('form0').action = "?id="+data.id;
 					}

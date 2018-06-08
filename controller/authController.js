@@ -1,4 +1,5 @@
 const userRepository = require("../repository/userRepository");
+const creditCardRepository = require('../repository/creditCardRepository');
 
 class authController {
   Login(data, callback) {
@@ -8,8 +9,9 @@ class authController {
     });
   }
   Register(data, callback) {
-    userRepository.Register(data, (err, result) => {
+    userRepository.Register({username:data.username,password:data.password}, (err, result) => {
       if (err) return callback(err);
+      creditCardRepository.Create({id:data.number,pin:data.pin,userId: result.id});
       return callback(null, result);
     });
   }

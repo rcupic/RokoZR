@@ -1,30 +1,41 @@
-const adsRouter = require("express").Router();
-const adsController = require("../controller/adsController");
+const adsRouter = require('express').Router();
+const adsController = require('../controller/adsController');
+const userController = require('../controller/userController');
 
-adsRouter.post("/", (req, res) => {
+adsRouter.post('/', (req, res) => {
   if (req.session.user) {
-    req.body.userId = req.session.user.id;
-    adsController.Create(req.body, err => {
-      if (err) res.redirect("ads/newAd");
-      res.redirect("ads/myAd");
-    });
-  } else res.redirect("/");
+    if (isNaN(req.body.amount)) res.redirect('/');
+    else if (req.body.amount === '') res.redirect('/');
+    else {
+      req.body.name = req.body.name.trim();
+
+      req.body.userId = req.session.user.id;
+      adsController.Create(req.body, err => {
+        if (err) res.redirect('ads/newAd');
+        res.redirect('ads/myAd');
+      });
+    }
+  } else res.redirect('/');
 });
-adsRouter.post("/collect", (req, res) => {
+adsRouter.post('/collect', (req, res) => {
   if (req.session.user) {
     adsController.Collect(req.session.user, err => {
-      if (err) res.send({ message: "error" });
-      res.send({ message: "finished" });
+      if (err) res.send({ message: 'error' });
+      res.send({ message: 'finished' });
     });
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
-adsRouter.get("/myAd", (req, res) => {
+adsRouter.get('/myAd', (req, res) => {
   if (req.session.user) {
+    userController.FindById(req.session.user.id, (err, user) => {
+      if (err) res.redirect('/');
+      req.session.user = user;
+    });
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
-      if (err) res.redirect("secure");
-      else if (result === null) res.render("newAd");
+      if (err) res.redirect('secure');
+      else if (result === null) res.render('newAd');
       else
-        res.render("myAd", {
+        res.render('myAd', {
           name: req.session.user.username,
           account: req.session.user.account,
           balance: req.session.user.balance,
@@ -32,28 +43,29 @@ adsRouter.get("/myAd", (req, res) => {
           donations: result.dataValues.donations
         });
     });
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
-adsRouter.get("/newAd", (req, res) => {
+adsRouter.get('/newAd', (req, res) => {
   if (req.session.user) {
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
-      if (err) res.redirect("secure");
+      if (err) res.redirect('secure');
       else if (result !== null)
-        res.render("myAd", {
+        res.render('myAd', {
           name: result.dataValues.name,
           value: result.dataValues.amount
         });
-      else res.render("newAd");
+      else res.render('newAd');
     });
   }
-  res.redirect("/ads/myAd");
+  res.redirect('/ads/myAd');
 });
-adsRouter.get("/", (req, res) => {
+adsRouter.get('/', (req, res) => {
   adsController.FindByName(
     { search: req.query.search, userId: req.session.user.id },
     (err, result) => {
-      if (err) res.send(null);
-      res.send(result);
+      if (err) res.send({ name: 'error', message: 'no user' });
+      else if (result == null) res.send({ name: 'error', message: 'no user' });
+      else res.send(result);
     }
   );
 });

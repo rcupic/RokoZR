@@ -19,10 +19,12 @@ block content
   br
   br
  div(class='midpage' value= '#{messages}')
+  h1 Mailbox
   nav(id='navMessages')
    ul(id='ulMessages' style='list-style-type:none')
     - var i = 0
     each message in messages
      li= message.creator.username+': '+message.text
-      i(class="fas fa-trash-alt" class='messageTresh')
+      button(id=message.id onclick='DeleteMessage(this.id)' style='border:none;float:right;padding-top:12px;background:none' class='treshBtn')
+       i(class="fas fa-trash-alt" class='messageTresh')
     

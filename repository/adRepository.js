@@ -47,6 +47,7 @@ class AdRepository {
         include: [
           {
             model: db.user,
+            as: 'adOwner',
             attributes: ["username"]
           }
         ]
@@ -55,6 +56,7 @@ class AdRepository {
         return callback(null, fromResolve);
       })
       .catch(err => {
+        console.log(err);
         return callback(err);
       });
   }

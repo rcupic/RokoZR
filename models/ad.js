@@ -38,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   ad.associate = function(models) {
-      ad.belongsTo(models.user,{foreignKey: 'userId'});
+      ad.belongsTo(models.user,{foreignKey: 'userId',as:'adOwner'});
   };
   return ad;
 };
