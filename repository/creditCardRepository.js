@@ -11,7 +11,6 @@ class creditCardRepository {
         });
     }
     FindByUserAndId(model,callback) {
-        console.log(model);
         db.creditCard.findOne({
             where: {
                 id: model.cardNo,

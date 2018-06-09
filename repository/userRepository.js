@@ -28,7 +28,7 @@ class UserRepository {
           return callback(null, user);
         }
         return callback({
-          title: "Error",
+          name: "error",
           message: "Already exists(username)"
         });
       })
@@ -41,6 +41,11 @@ class UserRepository {
       .findOne({
         where: {
           id: id
+        },
+        include: {
+          required: false,
+          model: db.message,
+          as: 'messageTo'
         }
       })
       .then(user => {

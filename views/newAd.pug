@@ -3,12 +3,11 @@ extends layout
 block content
  div(class='midpage')
   h1 New Ad
-  div(class='midPageForms')
-   form(method='post' autocomplete='off' action='/ads' onload='newAdInput()')
-    p
-     label(for='ad') Name: 
-     input(type='text', class='inputBox', name='name')
-    p
-     label(for='amount') Amout:
-     input(type='text', class='inputBox', id='amountNewAd', name='amount')
-    input(type='submit',value='Submit')
+  div(class='logreg')
+   p Name: 
+   input(type='text' id='adName' autocomplete='off' class='inputBox' name='name')
+   p Amout:
+   input(type='text' autocomplete='off' id='amount' class='inputBox' name='amount')
+   br
+   button(type='button' class='indexbtn' onclick='CreateAd()') Submit
+   p(id='errorP')

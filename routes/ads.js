@@ -4,17 +4,12 @@ const userController = require('../controller/userController');
 
 adsRouter.post('/', (req, res) => {
   if (req.session.user) {
-    if (isNaN(req.body.amount)) res.redirect('/');
-    else if (req.body.amount === '') res.redirect('/');
-    else {
-      req.body.name = req.body.name.trim();
-
+    console.log(req.body);
       req.body.userId = req.session.user.id;
       adsController.Create(req.body, err => {
-        if (err) res.redirect('ads/newAd');
-        res.redirect('ads/myAd');
+        if (err) res.json({name:'error',message:'Something went wrong'});
+        res.json({message:'Successful'});
       });
-    }
   } else res.redirect('/');
 });
 adsRouter.post('/collect', (req, res) => {
@@ -32,10 +27,12 @@ adsRouter.get('/myAd', (req, res) => {
       req.session.user = user;
     });
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
+      console.log(req.session.user.messageTo);
       if (err) res.redirect('secure');
-      else if (result === null) res.render('newAd');
+      else if (result === null) res.render('newAd',{messages:req.session.user.messageTo});
       else
         res.render('myAd', {
+          messages: req.session.user.messageTo,
           name: req.session.user.username,
           account: req.session.user.account,
           balance: req.session.user.balance,
@@ -51,10 +48,11 @@ adsRouter.get('/newAd', (req, res) => {
       if (err) res.redirect('secure');
       else if (result !== null)
         res.render('myAd', {
+          messages: req.session.user.messageTo,
           name: result.dataValues.name,
           value: result.dataValues.amount
         });
-      else res.render('newAd');
+      else res.render('newAd',{message:req.session.user.messageTo});
     });
   }
   res.redirect('/ads/myAd');

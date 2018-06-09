@@ -21,7 +21,9 @@ block content
  div(class='midpage')
   div(class='midPageForms')
    h1 Message
-   form(method="POST")
+   div(class='logreg')
     p Text: 
-     textarea(name="text")
-    input(type='submit' class='indexbtn' value='Send')
+    textarea(name="text" id='messageText')
+    br
+    button(type='button' class='indexbtn' onclick='sendMessage()') Send
+    p(id='errorP')

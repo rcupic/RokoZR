@@ -35,7 +35,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
   message.associate = function(models) {
     message.belongsTo(models.user,{foreignKey: 'createdBy',as: 'creator'});
-    message.belongsTo(models.user,{foreignKey: 'sentTo'});
+    message.belongsTo(models.user,{foreignKey: 'sentTo',as: 'messageTo'});
   };
   return message;
 };

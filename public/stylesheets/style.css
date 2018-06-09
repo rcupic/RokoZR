@@ -3,13 +3,6 @@ div.myad{
 	padding: 20px;
 	border-radius: 30px;
 }
-body {
-	background-image: url('/images/background.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	background-position: center;
-	height: 100%;	
-}
 hr{
 	height: 2px;
 	background-color: rgba(128, 0, 128, 0.207);
@@ -18,25 +11,9 @@ img#icon{
 	size:20px;
 	width: 20px;
 }
-img#fesb{
-	transform: rotate(270deg);
-	width: 300px;
-	size: 300px;
-	padding-top: 30px;
-	padding-bottom: 140px;
-}
 p#iconText{
-	transform: rotate(340deg);
-	color: green;
+	color: black;
 }
-div.form-group{
-	
-	margin-left: 30px;
-	margin-right: 30px;
-	padding: 20px;
-	
-}
-
 div.midPageForms{
 	
 	margin-bottom: 200px;
@@ -46,18 +23,7 @@ div.midPageForms{
 	padding: 20px;
 
 }
-div#divWithData{
-	background-color: rgba(0, 217, 255, 0);
-}
-
-div.searchAd{
-	
-	margin:30px;
-	padding:30px;
-}
-
-button.indexbtn{
-	
+button.indexbtn{	
 	background-color: rgba(58, 128, 0,0);
 	font-family: Serif;
 	font-size: 18px;
@@ -65,9 +31,7 @@ button.indexbtn{
 	border: none;
 	outline: none;
 }
-
-button#searchButt{
-	
+button#searchButt{	
 	font-family: Serif;
 	font-size: 18px;
 	color: black;
@@ -76,65 +40,31 @@ button#searchButt{
     padding-top: 0.2px;
 	outline:none;
 	background-color: rgba(0,0,0,0);
-	
-}
-
-input[type=submit]{
-	
-	background-color: rgba(0,0,0,0);
-	border: none;
-	font-family: Serif;
-	font-size: 18px;
-	color: black;
-	outline:none;
 }
 button#submitButt:hover{
 	cursor:pointer;
 }
-
 button.indexbtn:hover{
-	
 	cursor: pointer;
 }
-
 button#searchButt:hover{
-	
 	cursor: pointer;
-
 }
-
-input[type=radio]:hover{
-	
-	cursor: pointer;
-	
-}
-
 input[type=submit]:hover{
-	
 	cursor: pointer;
-	
 }
-
-
 html{
-	width: 100%;
-	height: 100%;
 	font-family: Serif;
 	font-size: 24px;
 }
-
 div.midpage{
-	
-	opacity:1;
 	margin-left: 150px;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 20px;
 	margin-top: 20px;
 	color:black;
-
 }
-
 header {
     padding: 1em;
     color: black;
@@ -142,63 +72,25 @@ header {
 	text-align: center;
 	display: block;
 }
-footer {
-	position: fixed;
-   bottom:0;
-   width:100%;
-   height:60px;
-   padding: 1em;
-    color: black;
-    clear: left;
-	text-align: center;
-	display: block;
-}
-
-div.profilepic{
-	
-	height: 100px;
-	width: 150px;
-}
-
-img#profilepicture{
-
-	border-radius: 80%;
-	width:100%;
-	border: 1px solid;
-	border-color: black;
-	max-width: 100%;
-    max-height: 100%;
-
-}
-
 ul.menubar {
-	
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-
 }
-
 li.menubar {
     float: right;
 }
-
 li a {
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-
-li.menubar a:hover {
-	font-weight: bold;
-}
 p#username {
 	font: 400 50px/1.5 'Pacifico', Helvetica, sans-serif;
 	text-shadow: 3px 3px 0px rgba(0,0,0,0.1), 7px 7px 0px rgba(0,0,0,0.05);
 }
-
 div.infoside{
 	margin-bottom: 20px;
 	text-align:center;
@@ -207,13 +99,11 @@ div.infoside{
 	color: black;
 	font-size: 24px;
 }
-
 div.searchTab{
 	margin-right:30px;
 	margin-bottom: 5px;
 	text-align: center;
 }
-
 input{
 	border: none;
 	border-bottom: 1px solid black;
@@ -226,19 +116,6 @@ input{
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: black;
     opacity: 1; /* Firefox */
-}
-
-input#DescriptionText{
-	
-	width:200px;
-	height:50px; 
-	
-}
-
-p#pDescription{
-	
-	vertical-align: middle;
-	
 }
 textarea:focus, input:focus, select:focus{
     outline: none;
@@ -253,6 +130,14 @@ select {
 select:hover{
 	cursor: pointer;
 }
+select:focus {
+	background: none;
+	border: none;
+}
+select option{
+	background: none;
+	border: none;
+}
 ul#ulMessages li{
 	border:1px solid;
 	border-color: rgba(0, 0, 0, 0.124);
@@ -265,4 +150,71 @@ button.treshBtn:active{
 }
 button.treshBtn:focus{
 	outline: none;
+}
+p#errorP {
+	color: rgba(255, 0, 0, 0.6);
+	font-size: 18px;
+	text-align: center;
+}
+div.logreg {
+	text-align: center;
+	background: rgba;
+	border-radius: 10px;
+	overflow: hidden;
+	padding: 77px 55px 33px 55px;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 300px;
+}
+div.logreg input {
+	font-family: Poppins-Regular;
+    font-size: 15px;
+    color: #555555;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 45px;
+    background: transparent;
+    padding: 0 5px;
+}
+div.logreg p {
+	font-size: 18px;
+	color: rgba(0, 0, 0, 0.721);
+	text-align: left;
+	margin-bottom: 0px;
+}
+textarea#messageText {
+	border: none;
+	border-bottom: 1px solid;
+}
+div#bgimage {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-image: url('/images/background.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+	background-size: cover;
+	opacity: 0.7;
+	z-index: -1;
+}
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+body {
+	margin: 0px;
+}
+div#numberOfMessages {
+	display: inline;
+	position: absolute;
+	font-size: 14px;
+	border-radius: 70%;
+	border: 1px solid;
+	border-color: rgba(255, 0, 0, 0.6);
+	color: red;
 }

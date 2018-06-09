@@ -37,6 +37,5 @@ function Purchase(){
         .catch(err => {
             errorP.innerHTML = 'Something went wrong!';
         });
-        console.log(myRequest.bodyUsed);
     }
 }

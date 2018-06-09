@@ -7,22 +7,31 @@ html
   script(type='text/javascript' src='/javascripts/getAllMessages.js')
   script(type='text/javascript' src='/javascripts/DeleteMessage.js')
   script(type='text/javascript' src='/javascripts/Purchase.js')
+  script(type='text/javascript' src='/javascripts/Login.js')
+  script(type='text/javascript' src='/javascripts/Register.js')
+  script(type='text/javascript' src='/javascripts/CreateAd.js')
   script(type='text/javascript' src='/javascripts/socket.io-client/dist/socket.io.js')
   script(type='text/javascript' src='/javascripts/sendMessage.js')
   link(rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous")
   link(rel='stylesheet', href='/stylesheets/style.css')
   link(href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css')
-
  body
+  div(id='bgimage')
   header
    div(class='menubar')
     ul(class='menubar')
      li(class='menubar') 
       a(href='/search')
        i(class='fa fa-eye')
-     li(class='menubar')
-      a(href='/messages/myMessages')
-       i(class='fas fa-envelope')
+     li(class='menubar' value= '#{messages}')
+      span
+       a(href='/messages/myMessages')
+        if messages.length == 0
+         i(class='fas fa-envelope-open')
+        else
+         i(class='fas fa-envelope')
+         div(id='numberOfMessages')
+          strong #{messages.length}
      li(class='menubar') 
       a(href='/secure')
        i(class='fa fa-home')
@@ -31,4 +40,3 @@ html
         p(id='iconText') GreenRabbit
          img(id='icon' src='/images/bell.png')
   block content
-footer Copyright &copy; Roko

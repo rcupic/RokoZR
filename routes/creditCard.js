@@ -11,6 +11,7 @@ creditCardRouter.get('/', function(req, res) {
       }
       req.session.user = user;
       res.render('creditCard', {
+        messages: req.session.user.messageTo,
         name: req.session.user.username,
         account: req.session.user.account,
         balance: req.session.user.balance
@@ -19,7 +20,6 @@ creditCardRouter.get('/', function(req, res) {
   }else res.redirect('/');
 });
 creditCardRouter.post('/', (req, res) => {
-  console.log(req.body);
   if (req.session.user) {
     async.waterfall(
       [

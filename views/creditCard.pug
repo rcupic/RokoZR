@@ -20,15 +20,13 @@ block content
   br
   br
  div(class='midpage')
-  form(method='post' autocomplete='off')
-   p
-    label(for='number') Card Number: 
-    input(type='number' id='cardNo' name='cardNo')
-   p
-    label(for='number') Card PIN: 
-    input(type='number' id='cardPin' name='cardPin')
-   p
-    label(for='number') Amount: 
-    input(type='number' id='amount' name='amount')
-  button(type='button' class='indexbtn' onclick='Purchase()') Purchase
-  p(id='errorP')
+  div(class='logreg')
+   p Card Number: 
+   input(type='number' id='cardNo' name='cardNo')
+   p Card PIN: 
+   input(type='number' id='cardPin' name='cardPin')
+   p Amount: 
+   input(type='number' autocomplete='off' id='amount' name='amount')
+   br
+   button(type='button' class='indexbtn' onclick='Purchase()') Purchase
+   p(id='errorP')

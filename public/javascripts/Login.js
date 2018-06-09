@@ -1,11 +1,15 @@
-function sendMessage() {
-	const text = document.getElementById('messageText').value;
+function Login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 	const errorP = document.getElementById('errorP');
-	const body = {text: text};
-	if(text === '')
-	 errorP.innerHTML = 'You can not send empty message';
+	const body = {username: username,password:password};
+	if(username === '')
+     errorP.innerHTML = 'Wrong username input';
+    else if(password === '')
+    errorP.innerHTML = 'Wrong password input';
 	else {
-		console.log('sending message...');
+        errorP.innerHTML = '';
+		console.log('logging...');
 		const myRequest = new Request(document.URL,
 		{
 			method: "POST",
@@ -18,10 +22,7 @@ function sendMessage() {
 			res.json()
 			.then(data => {
 				if(data.name === 'error') errorP.innerHTML = data.message;
-				else {
-					errorP.innerHTML = 'Message sent successfuly';
-					text.innerHTML = '';
-				}
+				window.location = '/secure';
 			})	
 		})
 		.catch(err => {

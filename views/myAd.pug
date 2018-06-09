@@ -21,11 +21,9 @@ block content
  div(class='midpage')
   div(class='midPageForms')
    h1 My Ad
-   label <em>Name:</em> #{adName}
-   br
-   br
-   label <em>Donations:</em> #{donations}
-   br
-   br
-   button(type='button' class='indexbtn' onClick='CloseMyAd()')
-    i(class='fas fa-check-circle')
+   div(class='logreg')
+    p Name: #{adName}
+    p Donations: #{donations}
+    br
+    button(type='button' class='indexbtn' onClick='CloseMyAd()')
+     i(class='fas fa-check-circle')

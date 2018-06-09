@@ -9,6 +9,7 @@ SearchRouter.get('/', (req, res) => {
       req.session.user = user;
     });
     res.render('search', {
+      messages: req.session.user.messageTo,
       name: req.session.user.username,
       account: req.session.user.account,
       balance: req.session.user.balance

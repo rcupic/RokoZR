@@ -2,15 +2,16 @@ const registerRouter = require('express').Router();
 const authController = require('../controller/authController');
 
 registerRouter.get('/', function(req, res) {
-  res.render('register');
+  res.render('register',{messages:0});
 });
 registerRouter.post('/', function(req, res) {
   authController.Register(req.body, (err, result) => {
-    console.log(err);
-    if (err) res.redirect('register');
-    else {
+    if(err) {
+      if (err.name ==='error') res.json(err);
+      else res.json({name:'error',message:'Something went wrong'});
+    }else {
       req.session.user = result;
-      res.redirect('secure');
+      res.json({message:'successful'});
     }
   });
 });

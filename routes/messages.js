@@ -7,6 +7,7 @@ messagesRouter.get('/', function(req, res) {
     if (err) res.redirect('/');
     req.session.user = user;
     res.render('message', {
+      messages: req.session.user.messageTo,
       name: req.session.user.username,
       account: req.session.user.account,
       balance: req.session.user.balance
@@ -45,7 +46,7 @@ messagesRouter.post('/', function(req, res) {
     },
     err => {
       if (err) res.json(err);
-      res.redirect('/secure');
+      else res.json({message:'successful'});
     }
   );
 });

@@ -7,6 +7,7 @@ secureRouter.get('/', function(req, res) {
       if (err) res.redirect('/');
       req.session.user = user;
       res.render('secure', {
+        messages: req.session.user.messageTo,
         name: user.username,
         account: user.account,
         balance: user.balance
