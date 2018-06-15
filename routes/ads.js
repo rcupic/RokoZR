@@ -4,7 +4,6 @@ const userController = require('../controller/userController');
 
 adsRouter.post('/', (req, res) => {
   if (req.session.user) {
-    console.log(req.body);
       req.body.userId = req.session.user.id;
       adsController.Create(req.body, err => {
         if (err) res.json({name:'error',message:'Something went wrong'});
@@ -27,12 +26,11 @@ adsRouter.get('/myAd', (req, res) => {
       req.session.user = user;
     });
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
-      console.log(req.session.user.messageTo);
       if (err) res.redirect('secure');
-      else if (result === null) res.render('newAd',{messages:req.session.user.messageTo});
+      else if (result === null) res.render('newAd',{messages:req.session.user.unreadMessages});
       else
         res.render('myAd', {
-          messages: req.session.user.messageTo,
+          messages: req.session.user.unreadMessages,
           name: req.session.user.username,
           account: req.session.user.account,
           balance: req.session.user.balance,
@@ -62,7 +60,7 @@ adsRouter.get('/', (req, res) => {
     { search: req.query.search, userId: req.session.user.id },
     (err, result) => {
       if (err) res.send({ name: 'error', message: 'no user' });
-      else if (result == null) res.send({ name: 'error', message: 'no user' });
+      else if (result === null) res.send({ name: 'error', message: 'no user' });
       else res.send(result);
     }
   );

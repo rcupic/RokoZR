@@ -8,9 +8,8 @@ usersRouter.get('/', (req, res) => {
         username: req.session.user.username
       },
       (err, result) => {
-        console.log(result);
         if (err) res.send({ name: 'error', message: 'something went wrong' });
-        else if (result == null)
+        else if (result === null)
           res.send({ name: 'error', message: 'something went wrong' });
         else res.send(result);
       }

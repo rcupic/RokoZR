@@ -18,7 +18,7 @@ function Purchase(){
         console.log('purchasing...');
         const myRequest = new Request('http://localhost:5001/creditCard',
         {
-            method: 'POST',
+            method: 'PUT',
             credentials: 'same-origin',
             body: JSON.stringify(body),
             headers: { "Content-Type": "application/json" }

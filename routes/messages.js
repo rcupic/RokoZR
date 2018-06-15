@@ -1,18 +1,22 @@
 const messagesRouter = require('express').Router();
 const messagesController = require('../controller/messagesController');
 const userController = require('../controller/userController');
+const lastReadingController = require('../controller/lastReadingController');
 
 messagesRouter.get('/', function(req, res) {
-  userController.FindById(req.session.user.id, (err, user) => {
-    if (err) res.redirect('/');
-    req.session.user = user;
-    res.render('message', {
-      messages: req.session.user.messageTo,
-      name: req.session.user.username,
-      account: req.session.user.account,
-      balance: req.session.user.balance
+  if(req.session.user) {
+    userController.FindById(req.session.user.id, (err, user) => {
+      if (err) res.redirect('/');
+      req.session.user = user;
+      res.render('message', {
+        messages: req.session.user.unreadMessages,
+        name: req.session.user.username,
+        account: req.session.user.account,
+        balance: req.session.user.balance
+      });
     });
-  });
+  }else
+    res.redirect('/');
 });
 messagesRouter.get('/myMessages', function(req, res) {
   if (req.session.user) {
@@ -20,13 +24,15 @@ messagesRouter.get('/myMessages', function(req, res) {
       if (err) res.redirect('/');
       req.session.user = user;
     });
+    lastReadingController.Update({userId: req.session.user.id});
     messagesController.FindBySentTo(req.session.user.id, (err, messages) => {
       if (err) res.json(err);
       res.render('myMessages', {
         name: req.session.user.username,
         account: req.session.user.account,
         balance: req.session.user.balance,
-        messages: messages
+        messages: 0,
+        listOfMessages: messages
       });
     });
   } else res.redirect('/');

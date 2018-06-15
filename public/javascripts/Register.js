@@ -5,8 +5,6 @@ function Register() {
     const pin = document.getElementById('pin').value;
 	const errorP = document.getElementById('errorP');
     const body = {username: username,password:password,id:number,pin:pin};
-    console.log(pin);
-    console.log(number);
 	if(username === '')
      errorP.innerHTML = 'Wrong username input';
     else if(password === '')

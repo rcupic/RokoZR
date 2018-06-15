@@ -65,7 +65,7 @@ class AdRepository {
     db.ad
       .update(
         {
-          donations: sequelize.literal("donations+" + value)
+          donations: sequelize.literal("donations+"+value)
         },
         {
           where: {

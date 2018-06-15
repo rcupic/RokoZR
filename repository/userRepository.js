@@ -42,11 +42,18 @@ class UserRepository {
         where: {
           id: id
         },
-        include: {
+        include: [{
           required: false,
           model: db.message,
-          as: 'messageTo'
-        }
+          as: 'messageTo',
+          order: [['time','DESC']]
+        },
+        {
+          model: db.lastReading,
+          as: 'userLogin',
+          attributes: ['time'],
+          required: false
+        }]
       })
       .then(user => {
         return callback(null, user);

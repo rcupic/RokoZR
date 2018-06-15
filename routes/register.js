@@ -1,5 +1,6 @@
 const registerRouter = require('express').Router();
 const authController = require('../controller/authController');
+const lastReadingController = require('../controller/lastReadingController');
 
 registerRouter.get('/', function(req, res) {
   res.render('register',{messages:0});
@@ -11,6 +12,8 @@ registerRouter.post('/', function(req, res) {
       else res.json({name:'error',message:'Something went wrong'});
     }else {
       req.session.user = result;
+      req.session.user.messageTo = [];
+      lastReadingController.Create({userId: result.id});
       res.json({message:'successful'});
     }
   });

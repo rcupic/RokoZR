@@ -11,7 +11,7 @@ class authController {
   Register(data, callback) {
     userRepository.Register({username:data.username,password:data.password}, (err, result) => {
       if (err) return callback(err);
-      creditCardRepository.Create({id:data.number,pin:data.pin,userId: result.id});
+      creditCardRepository.Create({id:data.id,pin:data.pin,userId: result.id});
       return callback(null, result);
     });
   }

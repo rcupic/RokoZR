@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     user.hasMany(models.ad,{foreignKey: 'userId',as: 'adOwner'});
     user.hasMany(models.message,{foreignKey: 'sentTo',as: 'messageTo'});
     user.hasMany(models.message,{foreignKey: 'createdBy',as: 'creator'});
+    user.hasOne(models.lastReading,{foreignKey: 'userId',as: 'userLogin'});
 };
   return user;
 };

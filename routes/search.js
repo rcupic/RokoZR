@@ -7,12 +7,12 @@ SearchRouter.get('/', (req, res) => {
     userController.FindById(req.session.user.id, (err, user) => {
       if (err) res.redirect('/');
       req.session.user = user;
-    });
-    res.render('search', {
-      messages: req.session.user.messageTo,
-      name: req.session.user.username,
-      account: req.session.user.account,
-      balance: req.session.user.balance
+      res.render('search', {
+        messages: req.session.user.unreadMessages,
+        name: req.session.user.username,
+        account: req.session.user.account,
+        balance: req.session.user.balance
+      });
     });
   } else res.redirect('/');
 });

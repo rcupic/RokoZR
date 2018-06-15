@@ -18,12 +18,12 @@ block content
    i(class='fas fa-sign-out-alt')
   br
   br
- div(class='midpage' value= '#{messages}')
+ div(class='midpage' value= '#{listOfMessages}')
   h1 Mailbox
   nav(id='navMessages')
    ul(id='ulMessages' style='list-style-type:none')
     - var i = 0
-    each message in messages
+    each message in listOfMessages
      li= message.creator.username+': '+message.text
       button(id=message.id onclick='DeleteMessage(this.id)' style='border:none;float:right;padding-top:12px;background:none' class='treshBtn')
        i(class="fas fa-trash-alt" class='messageTresh')
