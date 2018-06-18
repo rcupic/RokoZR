@@ -22,7 +22,8 @@ function Login() {
 			res.json()
 			.then(data => {
 				if(data.name === 'error') errorP.innerHTML = data.message;
-				window.location = '/secure';
+				else
+					window.location = '/secure';
 			})	
 		})
 		.catch(err => {

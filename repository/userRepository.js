@@ -46,7 +46,11 @@ class UserRepository {
           required: false,
           model: db.message,
           as: 'messageTo',
-          order: [['time','DESC']]
+          include: [{
+            model: db.user,
+            as: 'creator',
+            attributed: ['username']
+          }]
         },
         {
           model: db.lastReading,

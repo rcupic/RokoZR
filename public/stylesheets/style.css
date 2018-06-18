@@ -5,7 +5,7 @@ div.myad{
 }
 hr{
 	height: 2px;
-	background-color: rgba(128, 0, 128, 0.207);
+	background-color: rgba(0, 174, 255, 0.405);
 }
 img#icon{
 	size:20px;
@@ -22,6 +22,9 @@ div.midPageForms{
 	margin-top: 20px;
 	padding: 20px;
 
+}
+form#form0 {
+	background-color: rgba(0, 174, 255, 0.405);
 }
 button.indexbtn{	
 	background-color: rgba(58, 128, 0,0);
@@ -103,6 +106,8 @@ div.searchTab{
 	margin-right:30px;
 	margin-bottom: 5px;
 	text-align: center;
+	background-color:rgba(0, 0, 0, 0.227);
+	display: inline-block;
 }
 input{
 	border: none;
@@ -157,8 +162,8 @@ p#errorP {
 	text-align: center;
 }
 div.logreg {
+	background-color: rgba(0, 174, 255, 0.405);
 	text-align: center;
-	background: rgba;
 	border-radius: 10px;
 	overflow: hidden;
 	padding: 77px 55px 33px 55px;
@@ -189,6 +194,7 @@ div.logreg p {
 textarea#messageText {
 	border: none;
 	border-bottom: 1px solid;
+	background:none;
 }
 div#bgimage {
 	flex: 100%;

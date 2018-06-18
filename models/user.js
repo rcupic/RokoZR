@@ -1,4 +1,6 @@
 'use strict';
+const bcrypt = require('bcrypt');
+const rounds = 10;
 module.exports = (sequelize, DataTypes) => {
   const user = sequelize.define('user', {
     id: {
@@ -28,7 +30,14 @@ module.exports = (sequelize, DataTypes) => {
     updatedAt: {
       type: DataTypes.DATE
     }
-  }, {});
+  }, {
+    hooks: {
+      beforeCreate: instance => {
+      instance.password = bcrypt.hashSync(instance.password,rounds);
+      return;
+      }
+    }
+  });
   user.associate = function(models) {
     user.hasMany(models.ad,{foreignKey: 'userId',as: 'adOwner'});
     user.hasMany(models.message,{foreignKey: 'sentTo',as: 'messageTo'});

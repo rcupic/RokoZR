@@ -10,8 +10,6 @@ function Purchase(){
     if(isNaN(amount) || amount <= 0) {
         error = {name:'error',message:'Wrong amount input!'};
     }
-    if(isNaN(PIN) || PIN <= 0)
-        error = {name:'error',message:'Wrong PIN input!'};
     if(error) {
         errorP.innerHTML = error.message;
     }else {

@@ -48,6 +48,7 @@ function Search(){
 						document.getElementById('formSub0').innerHTML = "<p><a href='/messages?id="+data.id+"'><i class='fas fa-envelope'></i></a></p>";
 						document.getElementById('form0').action = "?id="+data.id;
 					}
+					document.getElementById('form0').style.border = '1px solid blue';
 				});
 			})
 			.catch(err => {

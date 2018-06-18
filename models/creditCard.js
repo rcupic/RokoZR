@@ -5,10 +5,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    pin: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    },
     createdAt: {
       type: DataTypes.DATE
     },

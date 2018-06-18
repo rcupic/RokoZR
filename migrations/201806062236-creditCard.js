@@ -6,10 +6,6 @@ module.exports = {
             type: Sequelize.INTEGER,
             primaryKey: true
           },
-          pin: {
-              type: Sequelize.INTEGER,
-              allowNull: false
-          },
           userId: {
             type: Sequelize.INTEGER,
             references: {

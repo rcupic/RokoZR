@@ -24,7 +24,7 @@ creditCardRouter.put('/', (req, res) => {
     async.waterfall(
       [
         callback => {
-          creditCardController.FindByUserAndId({cardNo:req.body.cardNo,pin:req.body.cardPin,userId:req.session.user.id},(err,result) => {
+          creditCardController.FindByUserAndId({cardNo:req.body.cardNo,userId:req.session.user.id},(err,result) => {
             if(err)
               return callback(err);
             if(!result)

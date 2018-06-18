@@ -25,16 +25,16 @@ messagesRouter.get('/myMessages', function(req, res) {
       req.session.user = user;
     });
     lastReadingController.Update({userId: req.session.user.id});
-    messagesController.FindBySentTo(req.session.user.id, (err, messages) => {
-      if (err) res.json(err);
+    //messagesController.FindBySentTo(req.session.user.id, (err, messages) => {
+      //if (err) res.json(err);
       res.render('myMessages', {
         name: req.session.user.username,
         account: req.session.user.account,
         balance: req.session.user.balance,
         messages: 0,
-        listOfMessages: messages
+        listOfMessages: req.session.user.messageTo
       });
-    });
+    //});
   } else res.redirect('/');
 });
 messagesRouter.get('/fetch', function(req, res) {

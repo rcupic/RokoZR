@@ -9,14 +9,12 @@ class userController {
     userRepository.FindById(data, (err, user) => {
       let i;
       if (err) return callback(err);
-      else if(user.messageTo.length !== 0) {
-        for(i = 0;i < user.messageTo.length;i++) {
-          if(!moment(user.userLogin.time).isBefore(moment(user.messageTo[i].createdAt))) 
-            break;
-        }
-      }else 
-        i = 0;
-      user.unreadMessages = i;
+      for(i = user.messageTo.length;i > 0;i--) {
+        if(!moment(user.userLogin.time).isBefore(moment(user.messageTo[i-1].createdAt)))
+          break;
+      }
+      user.unreadMessages = user.messageTo.length - i;
+      user.messageTo = user.messageTo.reverse();
       return callback(null, user);
     });
   }

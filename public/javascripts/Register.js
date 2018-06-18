@@ -2,17 +2,14 @@ function Register() {
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     const number = document.getElementById('number').value;
-    const pin = document.getElementById('pin').value;
 	const errorP = document.getElementById('errorP');
-    const body = {username: username,password:password,id:number,pin:pin};
+    const body = {username: username,password:password,id:number};
 	if(username === '')
      errorP.innerHTML = 'Wrong username input';
     else if(password === '')
     errorP.innerHTML = 'Wrong password input';
     else if(isNaN(number))
     errorP.innerHTML = 'Wrong number input';
-    else if(isNaN(pin))
-    errorP.innerHTML = 'Wrong pin input';
 	else {
         errorP.innerHTML = '';
 		console.log('logging...');

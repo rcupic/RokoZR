@@ -14,8 +14,7 @@ class creditCardRepository {
         db.creditCard.findOne({
             where: {
                 id: model.cardNo,
-                userId: model.userId,
-                pin: model.pin
+                userId: model.userId
             }
         })
         .then(card => {

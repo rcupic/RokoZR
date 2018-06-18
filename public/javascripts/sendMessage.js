@@ -20,7 +20,7 @@ function sendMessage() {
 				if(data.name === 'error') errorP.innerHTML = data.message;
 				else {
 					errorP.innerHTML = 'Message sent successfuly';
-					text.innerHTML = '';
+					document.getElementById('messageText').value = '';
 				}
 			})	
 		})
