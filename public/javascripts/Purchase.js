@@ -1,10 +1,9 @@
 function Purchase(){
     let error = null;
     const cardNo = document.getElementById('cardNo').value;
-    const PIN = document.getElementById('cardPin').value;
     const amount = document.getElementById('amount').value;
     const errorP = document.getElementById('errorP');
-    const body = {cardNo : parseInt(cardNo),cardPin: parseInt(PIN),amount:parseInt(amount)};
+    const body = {cardNo : parseInt(cardNo),amount:parseInt(amount)};
     if(isNaN(cardNo) || cardNo <= 0)
         error = {name:'error',message:'Wrong card number input!'};
     if(isNaN(amount) || amount <= 0) {

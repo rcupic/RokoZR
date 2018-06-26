@@ -67,7 +67,7 @@ class UserRepository {
         return callback(err);
       });
   }
-  Update(model) {
+  Update(model,callback) {
     db.user
       .update(model, {
         where: {
@@ -75,11 +75,10 @@ class UserRepository {
         }
       })
       .then(() => {
-        return;
+        return callback(null);
       })
       .catch(err => {
-        console.log(err);
-        return;
+        return callback(err);
       });
   }
   FindByName(model,callback) {

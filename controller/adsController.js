@@ -21,9 +21,14 @@ class AdController {
       return callback(null, result);
     });
   }
-  DonateToAd(ad, user) {
-    adRepository.Donate(ad);
-    userRepository.Update(user);
+  DonateToAd(ad, user,callback) {
+    adRepository.Donate(ad,err => {
+      if(err) callback(err);
+    });
+    userRepository.Update(user,err => {
+      if(err) callback(err);
+    });
+    return callback(null);
   }
   Collect(user, callback) {
     async.waterfall(
@@ -35,8 +40,11 @@ class AdController {
           });
         },
         (ad, callback) => {
-          adRepository.Delete(ad.id);
-          return callback(null, ad);
+          adRepository.Delete(ad.id,err => {
+            if(err)
+              return callback(err);
+            return callback(null,ad);
+          });
         },
         ad => {
           userRepository.Update(
@@ -44,13 +52,12 @@ class AdController {
               balance: parseInt(user.balance) - parseInt(ad.donations),
               id: user.id
             },
-            {
-              where: {
-                id: user
-              }
+            err => {
+              if(err)
+                return callback(err);
+              return callback(null);
             }
           );
-          return callback(null);
         }
       ],
       err => {

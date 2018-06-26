@@ -1,13 +1,13 @@
 const db = require("../models");
 class creditCardRepository {
-    Create(model) {
+    Create(model,callback) {
         db.creditCard.create(model)
         .then(() => {
-            return;
+            return callback(null,null);
         })
         .catch(err => {
             console.log(err);
-            return;
+            return callback(err);
         });
     }
     FindByUserAndId(model,callback) {

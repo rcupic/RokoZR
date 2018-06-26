@@ -36,8 +36,11 @@ creditCardRouter.put('/', (req, res) => {
           userController.Update({
             id: req.session.user.id,
             account: parseInt(req.session.user.account) + parseInt(req.body.amount)
+          },err => {
+            if(err)
+              return callback(err);
+            return callback(null);
           });
-          return callback(null);
         }
       ],
       err => {

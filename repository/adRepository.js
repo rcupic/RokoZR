@@ -60,7 +60,7 @@ class AdRepository {
         return callback(err);
       });
   }
-  Donate(model) {
+  Donate(model,callback) {
     const value = model.donations;
     db.ad
       .update(
@@ -74,14 +74,13 @@ class AdRepository {
         }
       )
       .then(() => {
-        return;
+        return callback(null,null);
       })
       .catch(err => {
-        console.log(err);
-        return;
+        return callback(err);
       });
   }
-  Delete(model) {
+  Delete(model,callback) {
     db.ad
       .update(
         {
@@ -94,10 +93,11 @@ class AdRepository {
         }
       )
       .then(() => {
-        return;
+        return callback(null,null);
       })
       .catch(err => {
         console.log(err);
+        return callback(err);
       });
   }
 }

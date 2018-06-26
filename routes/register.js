@@ -13,7 +13,10 @@ registerRouter.post('/', function(req, res) {
     }else {
       req.session.user = result;
       req.session.user.messageTo = [];
-      lastReadingController.Create({userId: result.id});
+      lastReadingController.Create({userId: result.id},err => {
+        if(err)
+          console.log(err);
+      });
       res.json({message:'successful'});
     }
   });

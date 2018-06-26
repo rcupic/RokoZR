@@ -24,7 +24,7 @@ div.midPageForms{
 
 }
 form#form0 {
-	background-color: rgba(0, 174, 255, 0.405);
+	background-color: rgba(255, 255, 255, 0.405);
 }
 button.indexbtn{	
 	background-color: rgba(58, 128, 0,0);
@@ -106,7 +106,7 @@ div.searchTab{
 	margin-right:30px;
 	margin-bottom: 5px;
 	text-align: center;
-	background-color:rgba(0, 0, 0, 0.227);
+	background-color:rgba(255, 255, 255, 0.515);
 	display: inline-block;
 }
 input{
@@ -162,7 +162,7 @@ p#errorP {
 	text-align: center;
 }
 div.logreg {
-	background-color: rgba(0, 174, 255, 0.405);
+	background-color: rgba(255, 255, 255, 0.405);
 	text-align: center;
 	border-radius: 10px;
 	overflow: hidden;

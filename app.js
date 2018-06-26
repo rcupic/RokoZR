@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const session = require('client-sessions');
 const bodyParser = require('body-parser');
 const config = require('config').get('development');
+const heapdump = require('heapdump');
 
 const index = require('./routes/index');
 const secure = require('./routes/secure');
@@ -42,6 +43,12 @@ app.use(session({
     maxAge: null
   }
 }));
+setInterval(shot,10000);
+function shot() {
+  heapdump.writeSnapshot((err,filename) => {
+    console.log('written');
+  });
+};
 
 app.use('/',index);
 app.use('/secure',secure);

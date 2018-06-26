@@ -24,7 +24,10 @@ messagesRouter.get('/myMessages', function(req, res) {
       if (err) res.redirect('/');
       req.session.user = user;
     });
-    lastReadingController.Update({userId: req.session.user.id});
+    lastReadingController.Update({userId: req.session.user.id},err => {
+      if(err)
+        console.log(err);
+    });
     //messagesController.FindBySentTo(req.session.user.id, (err, messages) => {
       //if (err) res.json(err);
       res.render('myMessages', {

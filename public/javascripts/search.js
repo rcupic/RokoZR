@@ -10,6 +10,7 @@ function Search(){
 				});
 				fetch(myRequest)
 				.then(res => {
+					console.log(res);
 					res.json()
 					.then(data => {
 						console.log(data);
@@ -17,7 +18,7 @@ function Search(){
 							document.getElementById('errorP').innerHTML = "<p>No such ad</p>";
 						}							
 						document.getElementById('pSearch0').innerHTML = "<hr><p>Name: "+data.name+"</p><p>Amount: "+data.amount+" hrk</p><p>Donations: "+data.donations+" hrk</p><p>By: "+data.adOwner.username+"</p>";	
-						document.getElementById('formSub0').innerHTML = "<p><input style='text-align:right' type='submit'  id='submitButt' value='Submit'><input type='text' name='donations' values='"+data.id+"' onfocus= 'this.placeholder=&quot;&quot' onblur='this.placeholder=&quot Amount...&quot' placeholder='Amount...'><p><hr>";
+						document.getElementById('formSub0').innerHTML = "<p><input type='text' name='donations' values='"+data.id+"' onfocus= 'this.placeholder=&quot;&quot' onblur='this.placeholder=&quot Amount...&quot' placeholder='Amount...'></p><p><input style='border-bottom:none;text-align:center' type='submit'  id='submitButt' value='Submit'></p><hr>";
 						document.getElementById('form0').action = "?id="+data.id;
 					})	
 				})
@@ -34,6 +35,7 @@ function Search(){
 			});
 			fetch(myRequest)
 			.then(res => {
+				console.log(res.body);
 				res.json()
 				.then(data => {
 					console.log(data);

@@ -2,8 +2,12 @@ const userRepository = require("../repository/userRepository");
 const moment = require('moment');
 
 class userController {
-  Update(data) {
-    userRepository.Update(data);
+  Update(data,callback) {
+    userRepository.Update(data,err => {
+      if(err)
+        return callback(err);
+      return callback(null);
+    });
   }
   FindById(data, callback) {
     userRepository.FindById(data, (err, user) => {

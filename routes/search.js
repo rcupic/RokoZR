@@ -33,9 +33,14 @@ SearchRouter.post('/', (req, res) => {
           id: req.session.user.id,
           account: req.session.user.account,
           balance: req.session.user.balance
-        }
-      );
-      res.redirect('/secure');
+        },
+      err => {
+        if(err) {
+          console.log(err);
+          res.redirect('/secure');
+        }else 
+          res.redirect('/secure');
+      });
     }
   } else res.redirect('/');
 });
