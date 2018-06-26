@@ -12,7 +12,6 @@ function Register() {
     errorP.innerHTML = 'Wrong number input';
 	else {
         errorP.innerHTML = '';
-		console.log('logging...');
 		const myRequest = new Request(document.URL,
 		{
 			method: "POST",

@@ -10,13 +10,9 @@ function getAllMessages() {
             res.json()
             .then(data => {
                 location.reload();
-                console.log(data);
-                return;
             })	
         })
         .catch(err => {
             console.log(err);
-            return;
         })
-        return;
 }

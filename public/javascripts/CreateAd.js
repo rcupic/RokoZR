@@ -8,8 +8,6 @@ function CreateAd(){
     else if(adName === '')
      errorP.innerHTML = 'Wrong name input';
     else {
-        console.log(body);
-        console.log('closing...');
         const myRequest = new Request('http://localhost:5001/ads',
         {
             method: "POST",
@@ -24,7 +22,6 @@ function CreateAd(){
                 if(data.name === 'error') errorP.innerHTML = data.message;
                 else {
                     location.reload();
-                    console.log(data);
                 }
             })	
         })

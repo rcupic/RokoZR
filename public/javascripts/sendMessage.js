@@ -5,7 +5,6 @@ function sendMessage() {
 	if(text === '')
 	 errorP.innerHTML = 'You can not send empty message';
 	else {
-		console.log('sending message...');
 		const myRequest = new Request(document.URL,
 		{
 			method: "POST",

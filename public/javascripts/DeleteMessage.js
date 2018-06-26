@@ -1,6 +1,5 @@
 function DeleteMessage(id){
-	console.log('deleting...');
-	const myRequest = new Request('http://localhost:5001/messages/delete?id='+id,
+	const myRequest = new Request(`http://localhost:5001/messages/delete?id=${id}`,
 	{
 		method: "POST",
 		credentials: "same-origin"
@@ -10,7 +9,6 @@ function DeleteMessage(id){
 		res.json()
 		.then(data => {
 			location.reload();
-			console.log(data);
 		})	
 	})
 	.catch(err => {
