@@ -59,10 +59,14 @@ messagesRouter.post('/', function(req, res) {
     }
   );
 });
-messagesRouter.post('/delete', function(req, res) {
+messagesRouter.delete('/', function(req, res) {
   messagesController.Delete(req.query.id, err => {
     if (err) res.json(err);
-    res.json({ message: 'done' });
+    userController.FindById(req.session.user.id, (err, user) => {
+      if (err) res.redirect('/');
+      req.session.user = user;
+      res.json({ message: 'done' });
+    });
   });
 });
 module.exports = messagesRouter;

@@ -1,15 +1,12 @@
 function DeleteMessage(id){
-	const myRequest = new Request(`http://localhost:5001/messages/delete?id=${id}`,
+	const myRequest = new Request(`http://localhost:5001/messages/?id=${id}`,
 	{
-		method: "POST",
+		method: "DELETE",
 		credentials: "same-origin"
 	});
 	fetch(myRequest)
 	.then(res => {
-		res.json()
-		.then(data => {
-			location.reload();
-		})	
+		window.location.reload(true);
 	})
 	.catch(err => {
 		console.log(err);
