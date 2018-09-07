@@ -23,14 +23,14 @@ adsRouter.get('/myAd', (req, res) => {
   if (req.session.user) {
     userController.FindById(req.session.user.id, (err, user) => {
       if (err) res.redirect('/');
-      req.session.user = user;
+        req.session.user = user;
     });
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
       if (err) res.redirect('secure');
-      else if (result === null) res.render('newAd',{messages:req.session.user.unreadMessages});
+      else if (result === null) res.render('newAd',{messages:req.session.user.messageTo.length});
       else
         res.render('myAd', {
-          messages: req.session.user.unreadMessages,
+          messages: req.session.user.messageTo.length,
           name: req.session.user.username,
           account: req.session.user.account,
           balance: req.session.user.balance,
@@ -43,17 +43,21 @@ adsRouter.get('/myAd', (req, res) => {
 adsRouter.get('/newAd', (req, res) => {
   if (req.session.user) {
     adsController.GetUsersAd(req.session.user.id, (err, result) => {
-      if (err) res.redirect('secure');
+      if (err) return res.redirect('secure');
       else if (result !== null)
-        res.render('myAd', {
-          messages: req.session.user.messageTo,
-          name: result.dataValues.name,
-          value: result.dataValues.amount
+        return res.render('myAd', {
+          messages: req.session.user.messageTo.length,
+          name: req.session.user.username,
+          account: req.session.user.account,
+          balance: req.session.user.balance,
+          value: result.dataValues.amount,
+          adName: result.dataValues.name,
+          donations: result.dataValues.donations
         });
-      else res.render('newAd',{message:req.session.user.messageTo});
+      else return res.render('newAd',{message:req.session.user.messageTo.length});
     });
-  }
-  res.redirect('/ads/myAd');
+  }else 
+    res.redirect('/ads/myAd');
 });
 adsRouter.get('/', (req, res) => {
   adsController.FindByName(

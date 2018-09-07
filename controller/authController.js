@@ -6,6 +6,8 @@ class authController {
   Login(data, callback) {
     userRepository.Login(data, (err, result) => {
       if (err) return callback(err);
+      else if(!result)
+        return callback(null,null);
       else if(bcrypt.compareSync(data.password,result.password))
         return callback(null, result);
       else

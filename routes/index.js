@@ -7,8 +7,10 @@ userRouter.get('/', function(req, res) {
 });
 userRouter.post('/', function(req, res) {
   authController.Login(req.body, (err, result) => {
-    if (err) res.json({name:'error',message:'Something went wrong'});
-    else if(result) {
+    if (err) {
+      console.log(err);
+      res.json({name:'error',message:'Something went wrong'});
+    }else if(result) {
       req.session.user = result;
       res.json({message:'successful'});
     }else {
