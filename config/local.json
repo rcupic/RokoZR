@@ -1,18 +1,18 @@
 {
   "development": {
     "username": "root",
-    "password": "Test1234",
+    "password": "mysqlProfico2019",
     "database": "rokoZr",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "operatorsAliases": "false",
     "pool": {
-      "max" : 10,
-      "min" : 0,
+      "max": 10,
+      "min": 0,
       "idle": 20000
     },
     "server": {
-      "port" : 5001,
+      "port": 5001,
       "secretKey": "zavrsniRadRoko2018node/pug"
     }
   }
