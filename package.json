@@ -30,7 +30,7 @@
     "mysql2": "^1.5.2",
     "npm-run-all": "^4.1.2",
     "promise": "^8.0.1",
-    "pug": "^2.0.1",
+    "pug": "^3.0.1",
     "sequelize": "^4.36.0",
     "sequelize-cli": "6.2.0",
     "serve-favicon": "^2.4.5",
